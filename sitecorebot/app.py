@@ -14,9 +14,10 @@ def app_mention_handler(body, say):
     say("Poland has mountains!")
 
 @app.message("mountains")
-def app_mention_mountains(message, say):
+def app_message_mountains(message, say):
     say(text=f"You know <@{message['user']}>, Poland has mountains too!")
 
 if __name__ == "__main__":
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     handler.start()
+
