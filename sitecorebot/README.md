@@ -2,13 +2,13 @@
 
 ## If you've never done any Python
 
-1. Install Python -> `winget install -e python`
+1. Install Python -> `winget install -e --id Python.Python.3.11`
 2. Restart your shell
 
 Done. That's all the steps.
 
 ## Install requirements
-1. Install required modules -> `pip install -e requirements.txt`
+1. Install required modules -> `pip install -r requirements.txt`
 2. Create .env file
 
         SLACK_BOT_TOKEN= Copy this from OAuth Tokens for Your Workspace on https://api.slack.com/apps/A062D72K36J/oauth?
