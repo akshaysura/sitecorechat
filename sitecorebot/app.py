@@ -50,6 +50,11 @@ def handle_app_mention_events(body, logger):
     print(body)
     print()
 
+@app.event("reaction_added")
+def handle_reaction_added_events(body, logger):
+    print(body)
+    print()
+
 if __name__ == "__main__":
     print(f"Sitecore Community Slackbot {BOT_VERSION} starting...")
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
