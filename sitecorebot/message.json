@@ -1,0 +1,29 @@
+{
+    "client_msg_id":"f66d2224-7648-4f8b-be47-16d7ccf039e5",
+    "type":"message",
+    "text":"A test message",
+    "user":"U0D8XHJSH",
+    "ts":"1698233639.683899",
+    "blocks":[
+       {
+          "type":"rich_text",
+          "block_id":"FIawV",
+          "elements":[
+             {
+                "type":"rich_text_section",
+                "elements":[
+                   {
+                      "type":"text",
+                      "text":"A test message"
+                   }
+                ]
+             }
+          ]
+       }
+    ],
+    "team":"T09SHRBNU",
+    "channel":"C0625KEQ2VD",
+    "event_ts":"1698233639.683899",
+    "channel_type":"group"
+ }
+ 
