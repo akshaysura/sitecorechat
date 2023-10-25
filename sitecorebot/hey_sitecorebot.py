@@ -15,7 +15,8 @@ def hey_sitecorebot(app, message, say):
 def joke(app, message, say):
     # Only respond in private chat
     channel_type = message["channel_type"]
-    if channel_type != "im":
+    if channel_type not in ["im", "mpim"]:
+        print(f"Rejecting channel_type {channel_type}")
         return
     
     dm_channel = message["channel"]
