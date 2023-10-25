@@ -1,3 +1,4 @@
+import time
 import pyjokes
 
 from defs import bot_admins
@@ -19,8 +20,11 @@ def joke(app, message, say):
     
     dm_channel = message["channel"]
     user_id = message["user"]
+    userinfo = app.client.users_info(user=user_id)["user"]
+    timestamp = message["ts"]
+    dt = time.ctime(float(timestamp))
 
     new_joke = pyjokes.get_joke()
     say(text=new_joke, channel=dm_channel)
 
-    print(f"Sent joke < {new_joke} to user {user_id}")
+    print(f"Sent joke <{new_joke}> to user {userinfo['name']} ({user_id}) at {dt}")

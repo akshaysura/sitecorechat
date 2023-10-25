@@ -24,23 +24,25 @@ def app_hey_sitecorebot(message, say):
 @app.message(re.compile("^joke$"))
 def app_message_joke(message, say):
     joke(app, message, say)
-    
+
 # Universal listener, for debug and development purposes
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
-    # see message.json
-    message_id = message["client_msg_id"]
-    message_text = message["text"]
+    channel_id = message["channel"]
+    channel_type = message["channel_type"]
     user_id = message["user"]
-    # see userinfo.json
     userinfo = app.client.users_info(user=user_id)["user"]
+    message_text = message["text"]
     timestamp = message["ts"]
     dt = time.ctime(float(timestamp))
-    channel_id = message["channel"]
-    # see channelinfo.json
-    channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
-    print(f"Message id {message_id} received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt}. '{message_text}' from user {userinfo['name']} ({user_id}).")
+
+    if channel_type != "im":
+        channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
+        print(f"Message '{message_text}' received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt} from user {userinfo['name']} ({user_id})")
+    else:
+        print(f"Message '{message_text}' received in a direct message at {dt} from user {userinfo['name']} ({user_id})")
+
 
 # catch-all
 @app.event("message")
