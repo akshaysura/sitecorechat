@@ -6,7 +6,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 from defs import *
 from new_user_request import new_user_request
-from hey_sitecorebot import hey_sitecorebot
+from hey_sitecorebot import hey_sitecorebot, joke
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -21,6 +21,10 @@ def app_new_user_request(message, say):
 def app_hey_sitecorebot(message, say):
     hey_sitecorebot(app, message, say)
 
+@app.message(re.compile("^joke$"))
+def app_message_joke(message, say):
+    joke(app, message, say)
+    
 # Universal listener, for debug and development purposes
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))

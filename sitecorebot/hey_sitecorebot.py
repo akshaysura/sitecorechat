@@ -1,3 +1,5 @@
+import pyjokes
+
 from defs import bot_admins
 
 def hey_sitecorebot(app, message, say):
@@ -8,3 +10,17 @@ def hey_sitecorebot(app, message, say):
         app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="thumbsdown")
     else:
         app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="thumbsup")
+
+def joke(app, message, say):
+    # Only respond in private chat
+    channel_type = message["channel_type"]
+    if channel_type != "im":
+        return
+    
+    dm_channel = message["channel"]
+    user_id = message["user"]
+
+    new_joke = pyjokes.get_joke()
+    say(text=new_joke, channel=dm_channel)
+
+    print(f"Sent joke < {new_joke} to user {user_id}")
