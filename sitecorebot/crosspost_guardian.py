@@ -1,6 +1,9 @@
 from thefuzz import fuzz
 from defs import channel_sitecorebot_sandbox
 
+# Lower means bigger risk of false positives
+FUZZY_RATIO_THRESHOLD = 90
+
 user_message_memory = {}
 
 def crosspost_guardian(app, message, say) -> int:
@@ -29,7 +32,7 @@ def crosspost_guardian(app, message, say) -> int:
             # add a message obsolecense here, like if the message is more than 1 hour old, disregard. Maybe. To discuss.
 
             fuzzy_ratio = fuzz.ratio(incoming_message_text, m["text"])
-            if fuzzy_ratio > 90:
+            if fuzzy_ratio > FUZZY_RATIO_THRESHOLD:
                 suspected_duplicate = m
 
             highest_fuzzy_score = max(highest_fuzzy_score, fuzzy_ratio)
