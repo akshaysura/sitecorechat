@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from defs import *
 from new_user_request import new_user_request
 from hey_sitecorebot import hey_sitecorebot, joke
+from crosspost_guardian import crosspost_guardian
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -39,6 +40,7 @@ def all_message_handler(message, say):
 
     if channel_type != "im":
         channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
+        crosspost_guardian(app, message, say)
         print(f"Message '{message_text}' received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt} from user {userinfo['name']} ({user_id})")
     else:
         print(f"Message '{message_text}' received in a direct message at {dt} from user {userinfo['name']} ({user_id})")

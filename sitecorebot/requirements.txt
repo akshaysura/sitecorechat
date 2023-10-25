@@ -2,3 +2,4 @@ python-dotenv
 slack-sdk
 slack-bolt
 pyjokes
+thefuzz
