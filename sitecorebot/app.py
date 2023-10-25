@@ -1,4 +1,4 @@
-BOT_VERSION = "0.1 alpha"
+BOT_VERSION = "0.2 alpha - now with crosspost guardian"
 
 import os, re, time
 from slack_bolt import App
@@ -40,8 +40,8 @@ def all_message_handler(message, say):
 
     if channel_type != "im":
         channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
-        crosspost_guardian(app, message, say)
-        print(f"Message '{message_text}' received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt} from user {userinfo['name']} ({user_id})")
+        fuzzy_score = crosspost_guardian(app, message, say)
+        print(f"Message '{message_text}' received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt} from user {userinfo['name']} ({user_id}). Fuzzy Score: {fuzzy_score}.")
     else:
         print(f"Message '{message_text}' received in a direct message at {dt} from user {userinfo['name']} ({user_id})")
 
