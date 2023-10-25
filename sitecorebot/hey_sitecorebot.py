@@ -1,7 +1,7 @@
 import time
 import pyjokes
 
-from defs import bot_admins
+from defs import bot_admins, im_channels
 
 def hey_sitecorebot(app, message, say):
     channel_id = message["channel"]
@@ -15,7 +15,7 @@ def hey_sitecorebot(app, message, say):
 def joke(app, message, say):
     # Only respond in private chat
     channel_type = message["channel_type"]
-    if channel_type not in ["im", "mpim"]:
+    if channel_type not in im_channels:
         print(f"Rejecting channel_type {channel_type}")
         return
     

@@ -11,3 +11,4 @@ email_regex_pattern = "[\w\.-]+@[\w\.-]+\.\w+"
 
 # No special priveleges implemented for admins yet
 bot_admins = [user_cassidydotdk, user_akshaysura, user_sitecorejunkie, user_jammykam, user_michaelwest]
+im_channels = ["im", "mpim"]

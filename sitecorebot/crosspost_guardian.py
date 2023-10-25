@@ -1,8 +1,9 @@
 from thefuzz import fuzz
-from defs import channel_sitecorebot_sandbox
+from defs import channel_sitecorebot_sandbox, im_channels
 
-# Lower means bigger risk of false positives
-FUZZY_RATIO_THRESHOLD = 90
+
+FUZZY_RATIO_THRESHOLD = 90      # Lower means bigger risk of false positives
+MESSAGE_LENGTH_THRESHOLD = 20   # messages shorter than this will be ignored by the crosspost guardian
 
 user_message_memory = {}
 
@@ -13,12 +14,12 @@ def crosspost_guardian(app, message, say) -> int:
 
     # We shouldn't get called for DMs, but just in case
     channel_type = message["channel_type"]
-    if channel_type == "im":
+    if channel_type in im_channels:
         return 0
 
     # ignore short messages to avoid false positives on "ok", "right", "nice", "boot", ":smile:", and so on.
     message_text = message["text"]
-    if len(message_text) < 20:
+    if len(message_text) < MESSAGE_LENGTH_THRESHOLD:
         return 0
     
     if user_id in user_message_memory:
