@@ -23,7 +23,7 @@ Done. That's all the steps.
 3. And then run the bot. Either directly -> `python app.py` or open `code app.py` and run it via the "Play" button top right. F5 probably also works.
 
 ## Profit!
-The bot is (currently) configured to run in [https://api.slack.com/apis/connections/socket](Sockets Mode), so no further configuration is required. It will connect directly to Slack's API servers and get to work.
+The bot is (currently) configured to run in (https://api.slack.com/apis/connections/socket)[Sockets Mode], so no further configuration is required. It will connect directly to Slack's API servers and get to work.
 
 ## API Documentation
 
