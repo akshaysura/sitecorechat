@@ -4,8 +4,8 @@ from channel import Channel, get_channel
 from user import User, get_user
 
 def hey_sitecorebot(app, message, say):
-    channel: Channel = get_channel(message["channel"])
-    user: User = get_user(message["user"])
+    channel: Channel = get_channel(app, message["channel"])
+    user: User = get_user(app, message["user"])
     message_ts = message["ts"]
 
     if not user.is_bot_admin:

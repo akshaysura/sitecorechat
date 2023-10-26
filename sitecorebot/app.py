@@ -31,13 +31,13 @@ def app_message_joke(message, say):
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
-    channel: Channel = get_channel(app, message["channel"])
     user: User = get_user(app, message["user"])
     message_text = message["text"]
     timestamp = message["ts"]
     dt = time.ctime(float(timestamp))
 
-    if channel.is_channel_messaging:
+    if message["channel_type"] not in ["im", "mpim"]:
+        channel: Channel = get_channel(app, message["channel"])
         fuzzy_score = crosspost_guardian(app, message, say)
         print(f"{dt}:#{channel.name}:{user.name}:{message_text} [{fuzzy_score}]")
     else:

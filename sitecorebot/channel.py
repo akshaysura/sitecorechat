@@ -18,7 +18,10 @@ class Channel:
 
     @property
     def is_channel_messaging(self) -> bool:
+        # try:
         return self.is_channel or self.is_group
+        # except:
+        #     print(self._channel_info)
 
     @property
     def num_members(self) -> int:
@@ -26,23 +29,23 @@ class Channel:
 
     @property
     def is_im(self) -> bool:
-        return bool(self._channel_info["is_im"])
+        return self._channel_info["is_im"]
     
     @property
     def is_mpim(self) -> bool:
-        return bool(self._channel_info["is_mpim"])
+        return self._channel_info["is_mpim"]
     
     @property
     def is_channel(self) -> bool:
-        return bool(self._channel_info["is_channel"])
+        return self._channel_info["is_channel"]
 
     @property
     def is_group(self) -> bool:
-        return bool(self._channel_info["is_group"])
+        return self._channel_info["is_group"]
 
     @property
     def is_private(self) -> bool:
-        return bool(self._channel_info["is_private"])
+        return self._channel_info["is_private"]
 
 ### CACHING ###
 
