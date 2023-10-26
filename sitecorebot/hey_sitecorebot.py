@@ -1,31 +1,31 @@
 import time
 import pyjokes
-
-from defs import bot_admins, im_channels
+from channel import Channel, get_channel
+from user import User, get_user
 
 def hey_sitecorebot(app, message, say):
-    channel_id = message["channel"]
+    channel: Channel = get_channel(message["channel"])
+    user: User = get_user(message["user"])
     message_ts = message["ts"]
 
-    if message["user"] not in bot_admins:
-        app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="thumbsdown")
+    if not user.is_bot_admin:
+        app.client.reactions_add(channel=channel.id, timestamp=message_ts, name="thumbsdown")
     else:
-        app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="thumbsup")
+        app.client.reactions_add(channel=channel.id, timestamp=message_ts, name="thumbsup")
 
 def joke(app, message, say):
     # Only respond in private chat
-    channel_type = message["channel_type"]
-    if channel_type not in im_channels:
-        print(f"Rejecting channel_type {channel_type}")
+    channel: Channel = get_channel(app, message["channel"])
+    if not channel.is_direct_messaging:
         return
-    
-    dm_channel = message["channel"]
-    user_id = message["user"]
-    userinfo = app.client.users_info(user=user_id)["user"]
+
+    user: User = get_user(app, message["user"])
     timestamp = message["ts"]
     dt = time.ctime(float(timestamp))
 
     new_joke = pyjokes.get_joke()
-    say(text=new_joke, channel=dm_channel)
+    say(text=new_joke, channel=channel.id)
+    print(f"{dt}:{user.name}:Joke:{new_joke}")
 
-    print(f"Sent joke <{new_joke}> to user {userinfo['name']} ({user_id}) at {dt}")
+def changelog(app, message, say):
+    pass

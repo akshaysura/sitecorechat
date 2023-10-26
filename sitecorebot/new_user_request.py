@@ -1,5 +1,9 @@
 import re
-from defs import channel_zinvite, channel_sitecorebot_sandbox, email_regex_pattern
+
+channel_sitecorebot_sandbox = "C0625KEQ2VD"
+channel_zinvite = "CA6SNF4NQ"
+
+email_regex_pattern = "[\w\.-]+@[\w\.-]+\.\w+"
 
 # Will be listening to "New User Request in #zinvite and #sitecorebot-sandbox"
 channel_zinvite_listeners = [channel_zinvite, channel_sitecorebot_sandbox]

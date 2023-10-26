@@ -1,0 +1,5 @@
+25 Oct 2023 - version 0.2 - Crosspost Guardian
+Crosspost Guardian functionality launched for testing. Will monitor for duplicate messages across channels and issue warnings/alerts to a secure channel for admin review
+
+24 Oct 2023 - version 0.1 - Initial Release
+Initial Release monitors the incoming "Invite Requested" channel and performs various labour intensive lookup validation tasks

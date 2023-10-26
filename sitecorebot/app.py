@@ -4,10 +4,11 @@ import os, re, time
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
-from defs import *
 from new_user_request import new_user_request
 from hey_sitecorebot import hey_sitecorebot, joke
 from crosspost_guardian import crosspost_guardian
+from channel import Channel, get_channel
+from user import User, get_user
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -30,38 +31,32 @@ def app_message_joke(message, say):
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
-    channel_id = message["channel"]
-    channel_type = message["channel_type"]
-    user_id = message["user"]
-    userinfo = app.client.users_info(user=user_id)["user"]
+    channel: Channel = get_channel(app, message["channel"])
+    user: User = get_user(app, message["user"])
     message_text = message["text"]
     timestamp = message["ts"]
     dt = time.ctime(float(timestamp))
 
-    if channel_type != "im":
-        channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
+    if channel.is_channel_messaging:
         fuzzy_score = crosspost_guardian(app, message, say)
-        print(f"Message '{message_text}' received in channel #{channel['name']} ({channel_id}) ({channel['num_members']} members) at {dt} from user {userinfo['name']} ({user_id}). Fuzzy Score: {fuzzy_score}.")
+        print(f"{dt}:#{channel.name}:{user.name}:{message_text} [{fuzzy_score}]")
     else:
-        print(f"Message '{message_text}' received in a direct message at {dt} from user {userinfo['name']} ({user_id})")
-
-
-# catch-all
-@app.event("message")
-def handle_message_events(body, logger):
-    print(body)
-    print()
+        print(f"{dt}:IM/MPIM:{user.name} ({user.id}):{message_text}")
 
 # not doing anything with @mentions of the bot yet
 @app.event("app_mention")
 def handle_app_mention_events(body, logger):
-    print(body)
-    print()
+    pass
 
+# not doing anything with reactions yet
 @app.event("reaction_added")
 def handle_reaction_added_events(body, logger):
-    print(body)
-    print()
+    pass
+
+# catch-all for "message" events (message_changed, message_deleted)
+@app.event("message")
+def handle_message_events(body, logger):
+    pass
 
 if __name__ == "__main__":
     print(f"Sitecore Community Slackbot {BOT_VERSION} starting...")
