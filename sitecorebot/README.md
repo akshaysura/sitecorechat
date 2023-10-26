@@ -1,9 +1,14 @@
 # How to run
+This assumes you've already cloned the repository or otherwise have it on your local machine.
 
-## If you've never done any Python
+## If you've never done any Python on your machine:
 
-1. Install Python -> `winget install -e --id Python.Python.3.11`
-2. Restart your shell
+* Windows
+        1. Install Python -> `winget install -e --id Python.Python.3.11`
+        2. Restart your shell (might not even be needed. If you can run 'python' from the command-line after winget, you're all set)
+* Linux
+        1. `sudo apt update`
+        2. `sudo apt install python3`
 
 Done. That's all the steps.
 
