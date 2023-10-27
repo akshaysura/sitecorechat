@@ -1,5 +1,5 @@
 from message import Message
-from bot_commands import display_help, display_joke, display_changelog
+from bot_commands import display_help, display_joke, display_changelog, display_admins
 
 bot_commands = {
     "help": {
@@ -19,10 +19,18 @@ bot_commands = {
         "allow_in_im": True,
         "allow_in_mpim": False,
         "callable": display_changelog
+    },
+    "admins": {
+        "requires_bot_admin": False,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "callable": display_admins
     }
 }
 
 def bot_command_handler(message: Message):
+    if message.is_channel_message: return
+
     commands = get_allowed_commands(message)
     if len(commands) == 0: return
 

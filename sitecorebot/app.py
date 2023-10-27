@@ -5,7 +5,7 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 from new_user_request import new_user_request
-from hey_sitecorebot import hey_sitecorebot, joke
+from hey_sitecorebot import hey_sitecorebot
 from crosspost_guardian import crosspost_guardian
 from bot_command_handler import bot_command_handler
 from message import Message
@@ -22,10 +22,9 @@ def app_new_user_request(message, say):
 
 @app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
 def app_hey_sitecorebot(message, say):
-    hey_sitecorebot(app, message, say)
+    m: Message = Message(app, message, say)
+    hey_sitecorebot(m)
 
-# Universal listener, for debug and development purposes
-# Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
     m: Message = Message(app, message, say)
@@ -34,7 +33,7 @@ def all_message_handler(message, say):
         fuzzy_score = crosspost_guardian(m)
         print(f"{m.message_date_time_string}:#{m.channel.name} ({m.channel_id}):{m.user.name} ({m.user.id}):{m.text} [{fuzzy_score}]")
     else:
-        # no print()ing and log()ing of IM/MPIM messages
+        print(f"{m.message_date_time_string}:{m.channel_type}:{m.user.name} ({m.user.id}):{m.text}")
         bot_command_handler(m)
 
 # not doing anything with @mentions of the bot yet

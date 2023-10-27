@@ -49,6 +49,10 @@ class Message:
         return self._user
 
     @property
+    def channel_type(self) -> str:
+        return self._message["channel_type"]
+    
+    @property
     def channel(self) -> Channel:
         if not self._channel:
             self._channel = get_channel(self._app, self._message["channel"])

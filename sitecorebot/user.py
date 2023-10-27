@@ -5,12 +5,15 @@ user_sitecorejunkie = "U09SJGX5X"
 user_jammykam = "U0A1FKM24"
 user_michaelwest = "U09SK9G1F"
 user_longhorntaco = "U0C29A1MG"
+user_marekmusielak = ""
+user_tamastarnok = ""
 
 # mvp program coordinators
 user_tamasvarga = "U0BAH3W05"
+user_nicolemontero = ""
 
-# No special priveleges implemented for admins yet
 bot_admins = [user_cassidydotdk, user_akshaysura, user_sitecorejunkie, user_jammykam, user_michaelwest, user_longhorntaco]
+mvp_coordinators = [user_tamasvarga, user_nicolemontero]
 
 class User:
     def __init__(self, app, userinfo):
@@ -33,6 +36,10 @@ class User:
     @property
     def is_bot_admin(self) -> bool:
         return self.id in bot_admins
+    
+    @property
+    def real_name(self) -> str:
+        return self._userinfo["real_name"]
 
 ### CACHING ###
 
