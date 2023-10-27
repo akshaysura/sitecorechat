@@ -48,4 +48,12 @@ def get_user(app, user_id) -> User:
             cache_users[user_id] = user
             return user
         except:
+            print(f"ERR: User Not Found! ({user_id})")
+            return None
+
+def get_user_by_email(app, email) -> User:
+        try:
+            userinfo_request = app.client.users_lookupByEmail(email=email)
+            return get_user(app, userinfo_request["user"]["id"])
+        except:
             return None

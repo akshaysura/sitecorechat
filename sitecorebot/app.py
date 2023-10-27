@@ -7,8 +7,7 @@ from dotenv import load_dotenv
 from new_user_request import new_user_request
 from hey_sitecorebot import hey_sitecorebot, joke
 from crosspost_guardian import crosspost_guardian
-from channel import Channel, get_channel
-from user import User, get_user
+from message import Message
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -17,7 +16,8 @@ app = App(token=SLACK_BOT_TOKEN)
 
 @app.message("New User Request")
 def app_new_user_request(message, say):
-    new_user_request(app, message, say)
+    m: Message = Message(app, message, say)
+    new_user_request(m)
 
 @app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
 def app_hey_sitecorebot(message, say):
@@ -31,17 +31,13 @@ def app_message_joke(message, say):
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
-    user: User = get_user(app, message["user"])
-    message_text = message["text"]
-    timestamp = message["ts"]
-    dt = time.ctime(float(timestamp))
+    m: Message = Message(app, message, say)
 
-    if message["channel_type"] not in ["im", "mpim"]:
-        channel: Channel = get_channel(app, message["channel"])
-        fuzzy_score = crosspost_guardian(app, message, say)
-        print(f"{dt}:#{channel.name}:{user.name}:{message_text} [{fuzzy_score}]")
+    if m.is_channel_message:
+        fuzzy_score = crosspost_guardian(m)
+        print(f"{m.message_date_time_string}:#{m.channel.name} ({m.channel_id}):{m.user.name} ({m.user.id}):{m.text} [{fuzzy_score}]")
     else:
-        print(f"{dt}:IM/MPIM:{user.name} ({user.id}):{message_text}")
+        print(f"{m.message_date_time_string}:IM/MPIM:{m.user.name} ({m.user.id}):{m.text}")
 
 # not doing anything with @mentions of the bot yet
 @app.event("app_mention")

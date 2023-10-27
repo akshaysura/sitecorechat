@@ -1,38 +1,33 @@
 import re
+from message import Message
+from user import User, get_user_by_email
 
 channel_sitecorebot_sandbox = "C0625KEQ2VD"
+channel_sitecorebot_sandbox2 = "C062W6QCGGL"
 channel_zinvite = "CA6SNF4NQ"
 
 email_regex_pattern = "[\w\.-]+@[\w\.-]+\.\w+"
 
 # Will be listening to "New User Request in #zinvite and #sitecorebot-sandbox"
-channel_zinvite_listeners = [channel_zinvite, channel_sitecorebot_sandbox]
+channel_zinvite_listeners = [channel_zinvite, channel_sitecorebot_sandbox, channel_sitecorebot_sandbox2]
 
-def new_user_request(app, message, say):
-    channel_id = message["channel"]
-    message_text = message["text"]
-    message_ts = message["ts"]
+def new_user_request(m: Message):
+    # New User Request would not happen in DMs
+    if m.is_direct_message: return
 
-    if channel_id not in channel_zinvite_listeners:
-        channel = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
-        ignored_message = f"New User Request ignored in channel {channel['name']} ({channel_id})"
-        app.logger.debug(ignored_message)
-        print(ignored_message)
-        return
+    # New User Requests should only be acted on, in our defined list of channels
+    if m.channel_id not in channel_zinvite_listeners: return
 
-    match = re.search(email_regex_pattern, message_text)
+    match = re.search(email_regex_pattern, m.text)
     if match:
         user_request_email = match.group()
-        print(f"Incoming New User Request for Email {user_request_email}")
-        try:
-            userinfo_request = app.client.users_lookupByEmail(email=user_request_email)
-            existing_userinfo = userinfo_request["user"]
-            app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="red_circle")
-            response_message = f"Found user as <@{existing_userinfo['id']}> ({existing_userinfo['real_name']})"
-            say(text=response_message, thread_ts=message_ts)
-            say(text = f"```{existing_userinfo}```", thread_ts=message_ts)
-            print(response_message)
-        except:
+        u: User = get_user_by_email(m._app, user_request_email)
+
+        if u:
+            m.react("red_circle")
+            m.respond_in_thread(f"Found user as <@{u.id}> ({u.name})")
+            print(f"{m.message_date_time_string}:New User Request:{user_request_email}:Found Existing:{u.id} ({u.name})")
+        else:
             # user was not found, this is good
-            app.client.reactions_add(channel=channel_id, timestamp=message_ts, name="large_green_circle")
-            print(f"Incoming request for {user_request_email} is a new user")
+            m.react("large_green_circle")
+            print(f"{m.message_date_time_string}:New User Request:{user_request_email}:No Existing User Found")
