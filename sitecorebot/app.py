@@ -1,6 +1,6 @@
-BOT_VERSION = "0.2 alpha - now with crosspost guardian"
+BOT_VERSION = "0.2 - now with crosspost guardian"
 
-import os, re, time
+import os, re
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
