@@ -1,3 +1,6 @@
+27 Oct 2023 - version 0.3 - IM Command handler
+The bot now has a basic command interface in place, for responding to IMs. For now, only "help" and "joke" are available as public commands, "changelog" for bot admins
+
 25 Oct 2023 - version 0.2 - Crosspost Guardian
 Crosspost Guardian functionality launched for testing. Will monitor for duplicate messages across channels and issue warnings/alerts to a secure channel for admin review
 

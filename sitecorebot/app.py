@@ -1,4 +1,4 @@
-BOT_VERSION = "0.2 - now with crosspost guardian"
+BOT_VERSION = "0.3 - now with IM command handler"
 
 import os, re
 from slack_bolt import App
@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from new_user_request import new_user_request
 from hey_sitecorebot import hey_sitecorebot, joke
 from crosspost_guardian import crosspost_guardian
+from bot_command_handler import bot_command_handler
 from message import Message
 
 load_dotenv()
@@ -23,10 +24,6 @@ def app_new_user_request(message, say):
 def app_hey_sitecorebot(message, say):
     hey_sitecorebot(app, message, say)
 
-@app.message(re.compile("^joke$"))
-def app_message_joke(message, say):
-    joke(app, message, say)
-
 # Universal listener, for debug and development purposes
 # Only gets invoked if no previous handler has picked up the message
 @app.message(re.compile("^."))
@@ -37,7 +34,8 @@ def all_message_handler(message, say):
         fuzzy_score = crosspost_guardian(m)
         print(f"{m.message_date_time_string}:#{m.channel.name} ({m.channel_id}):{m.user.name} ({m.user.id}):{m.text} [{fuzzy_score}]")
     else:
-        print(f"{m.message_date_time_string}:IM/MPIM:{m.user.name} ({m.user.id}):{m.text}")
+        # no print()ing and log()ing of IM/MPIM messages
+        bot_command_handler(m)
 
 # not doing anything with @mentions of the bot yet
 @app.event("app_mention")

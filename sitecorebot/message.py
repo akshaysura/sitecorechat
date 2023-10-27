@@ -15,6 +15,14 @@ class Message:
         return self._message["channel_type"] in ["im", "mpim"]
     
     @property
+    def is_im(self) -> bool:
+        return self._message["channel_type"] == "im"
+
+    @property
+    def is_mpim(self) -> bool:
+        return self._message["channel_type"] == "mpim"
+
+    @property
     def is_channel_message(self) -> bool:
         return self._message["channel_type"] not in ["im", "mpim"]
 

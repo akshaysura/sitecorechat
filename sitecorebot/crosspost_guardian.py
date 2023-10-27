@@ -30,7 +30,7 @@ def crosspost_guardian(m: Message) -> int:
 
         if suspected_duplicate:
             message_text =  f"Message {m.get_permalink()} in channel <#{m.channel_id}> " \
-                            f"is a suspected duplicate of {suspected_duplicate.get_permalink()} in channel <#{m.channel_id}>. " \
+                            f"is a suspected duplicate of {suspected_duplicate.get_permalink()} in channel <#{suspected_duplicate.channel_id}>. " \
                             f"Confidence: {highest_fuzzy_score}"
             m.respond_to_channel(crosspost_guardian_alert_channel, message_text)
 
