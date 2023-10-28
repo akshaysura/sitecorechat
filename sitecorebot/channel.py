@@ -44,6 +44,20 @@ class Channel:
     def is_private(self) -> bool:
         return bool(self._channel_info["is_private"])
 
+    @property
+    def topic(self) -> str:
+        if self._channel_info["topic"]:
+            return self._channel_info["topic"]["value"]
+        return ""
+
+    @property
+    def is_archived(self) -> bool:
+        return bool(self._channel_info["is_archived"])
+    
+    @property
+    def is_member(self) -> bool:
+        return bool(self._channel_info["is_member"])
+
 ### CACHING ###
 
 cache_channels = {}

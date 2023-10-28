@@ -41,3 +41,5 @@ def crosspost_guardian(m: Message) -> int:
     else:
         user_message_memory[m.user.id] = [m]
         return 0
+
+print(f"Crosspost Guardian Online. Target Channel: {crosspost_guardian_alert_channel}. Fuzzy Threshold: {FUZZY_RATIO_THRESHOLD}. Message Length Threshold: {MESSAGE_LENGTH_THRESHOLD}")

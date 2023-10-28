@@ -1,5 +1,5 @@
 from message import Message
-from bot_commands import display_help, display_joke, display_changelog, display_admins
+from bot_commands import display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels
 
 bot_commands = {
     "help": {
@@ -25,6 +25,18 @@ bot_commands = {
         "allow_in_im": True,
         "allow_in_mpim": False,
         "callable": display_admins
+    },
+    "channels": {
+        "requires_bot_admin": False,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "callable": display_channels
+    },
+    "allchannels": {
+        "requires_bot_admin": True,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "callable": display_all_channels
     }
 }
 

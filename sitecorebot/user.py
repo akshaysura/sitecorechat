@@ -10,7 +10,7 @@ user_tamastarnok = "U3H1FSTU2"
 
 # mvp program coordinators
 user_tamasvarga = "U0BAH3W05"
-user_nicolemontero = ""
+user_nicolemontero = "U01U3AMHVC0"
 
 bot_admins = [user_cassidydotdk, user_akshaysura, user_sitecorejunkie, user_jammykam, user_michaelwest, user_longhorntaco, user_marekmusielak, user_tamastarnok]
 mvp_coordinators = [user_tamasvarga, user_nicolemontero]
@@ -36,6 +36,10 @@ class User:
     @property
     def is_bot_admin(self) -> bool:
         return self.id in bot_admins
+    
+    @property
+    def is_mvp_coordinator(self) -> bool:
+        return self.id in mvp_coordinators
     
     @property
     def real_name(self) -> str:
@@ -64,3 +68,5 @@ def get_user_by_email(app, email) -> User:
             return get_user(app, userinfo_request["user"]["id"])
         except:
             return None
+
+print(f"User Manager Online. Bot Admins:", bot_admins)

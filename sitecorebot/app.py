@@ -1,4 +1,4 @@
-BOT_VERSION = "0.3 - now with IM command handler"
+BOT_VERSION = "Sitecore Community Slackbot version 0.3.2"
 
 import os, re
 from slack_bolt import App
@@ -52,6 +52,6 @@ def handle_message_events(body, logger):
     pass
 
 if __name__ == "__main__":
-    print(f"Sitecore Community Slackbot {BOT_VERSION} starting...")
+    print(f"{BOT_VERSION} starting...")
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     handler.start()

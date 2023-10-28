@@ -1,3 +1,7 @@
+28 Oct 2023 - version 0.3.2 - 'channels' and 'allchannels' (bot admin) commands added
+
+27 Oct 2023 - version 0.3.1 - 'admins' command added
+
 27 Oct 2023 - version 0.3 - IM Command handler
 The bot now has a basic command interface in place, for responding to IMs. For now, only "help" and "joke" are available as public commands, "changelog" for bot admins
 
