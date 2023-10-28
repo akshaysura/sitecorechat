@@ -60,8 +60,6 @@ def display_channels(message: Message, raw_list=False):
         if ci["is_member"] or raw_list:
             c: Channel = get_channel(message._app, ci["id"])
             channel_list.append(c)
-        else:
-            print(f"Ignoring channel {ci['name']}")
 
     channel_list.sort(key=lambda x: x.name)
     
