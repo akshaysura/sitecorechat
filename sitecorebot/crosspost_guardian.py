@@ -22,11 +22,14 @@ def crosspost_guardian(m: Message) -> int:
         suspected_duplicate = None
 
         for previous_message in message_list:
-            # add a message obsolecense here, like if the message is more than 1 hour old, disregard. Maybe. To discuss.
             fuzzy_ratio = fuzz.ratio(m.text, previous_message.text)
-            if fuzzy_ratio > FUZZY_RATIO_THRESHOLD:
-                suspected_duplicate = previous_message
             highest_fuzzy_score = max(highest_fuzzy_score, fuzzy_ratio)
+
+            if fuzzy_ratio > FUZZY_RATIO_THRESHOLD:
+                # Check to make sure the suspected duplicate original message is still around
+                if previous_message.get_permalink():
+                    suspected_duplicate = previous_message
+                    break
 
         if suspected_duplicate:
             message_text =  f"Message {m.get_permalink()} in channel <#{m.channel_id}> " \

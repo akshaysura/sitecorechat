@@ -59,7 +59,10 @@ class Message:
         return self._channel
 
     def get_permalink(self):
-        return self._app.client.chat_getPermalink(channel=self.channel_id, message_ts=self.message_ts)["permalink"]
+        try:
+            return self._app.client.chat_getPermalink(channel=self.channel_id, message_ts=self.message_ts)["permalink"]
+        except:
+            return None
 
     def react(self, emoji="thumbsup"):
         self._app.client.reactions_add(channel=self.channel_id, timestamp=self.message_ts, name=emoji)
