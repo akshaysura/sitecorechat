@@ -63,7 +63,10 @@ def handle_team_join_events(event, say):
     text = f"EXPERIMENTAL: User: <@{user_id}> joined."
     say(text=text, channel=welcome_channel_id)
 
-if __name__ == "__main__":
+def main():
     print(f"{BOT_VERSION} starting...")
     handler = SocketModeHandler(app, SLACK_APP_TOKEN)
     handler.start()
+
+if __name__ == "__main__":
+    main()

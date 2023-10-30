@@ -1,4 +1,4 @@
-30 Oct 2023 - version 0.3.2 - experimental code to catch a new user joining, implemented
+30 Oct 2023 - version 0.3.3 - experimental code to catch a new user joining, implemented
 
 28 Oct 2023 - version 0.3.2 - 'channels' and 'allchannels' (bot admin) commands added
 

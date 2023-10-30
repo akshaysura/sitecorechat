@@ -30,4 +30,4 @@ def new_user_request(m: Message):
         else:
             # user was not found, this is good
             m.react("large_green_circle")
-            print(f"{m.message_date_time_string}:New User Request:{user_request_email}:No Existing User Found")
+            print(f"{m.message_date_time_string}:New User Request:No user found for email: {user_request_email}")
