@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.3.2"
+BOT_VERSION = "Sitecore Community Slackbot version 0.3.3"
 
 import os, re
 from slack_bolt import App
@@ -50,6 +50,18 @@ def handle_reaction_added_events(body, logger):
 @app.event("message")
 def handle_message_events(body, logger):
     pass
+
+@app.event("hello")
+def handle_hello_events(body, logger):
+    print("Slack API said hello!")
+
+@app.event("team_join")
+def handle_team_join_events(event, say):
+    print(f"NEW USER JOINED: {event}")
+    welcome_channel_id = "C0625KEQ2VD"
+    user_id = event["user"]
+    text = f"EXPERIMENTAL: User: <@{user_id}> joined."
+    say(text=text, channel=welcome_channel_id)
 
 if __name__ == "__main__":
     print(f"{BOT_VERSION} starting...")
