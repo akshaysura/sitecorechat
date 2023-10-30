@@ -21,12 +21,12 @@ def app_new_user_request(message, say):
     new_user_request(m)
 
 @app.event("team_join")
-def handle_team_join_events(body, logger):
-    print(f"NEW USER JOINED: {body}")
+def handle_team_join_events(event, say):
+    print(f"NEW USER JOINED: {event}")
     welcome_channel_id = "C0625KEQ2VD"
-    user_id = body["user"]
+    user_id = event["event"]["user"]["id"]
     text = f"EXPERIMENTAL: User: <@{user_id}> joined."
-    #say(text=text, channel=welcome_channel_id)
+    say(text=text, channel=welcome_channel_id)
 
 @app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
 def app_hey_sitecorebot(message, say):
