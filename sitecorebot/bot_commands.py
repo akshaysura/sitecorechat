@@ -51,15 +51,18 @@ def display_channels(message: Message, raw_list=False):
 
     channel_types = "public_channel"
     if message.user.is_bot_admin:
-        channel_types += ",private_channel,mpim,im"
+        channel_types += ",private_channel"
 
     channel_list = []
 
-    channel_info_list = message._app.client.conversations_list(limit=500,types=channel_types)
+    channel_info_list = message._app.client.conversations_list(limit=5000,types=channel_types)
     for ci in channel_info_list["channels"]:
-        if ci["is_member"] or raw_list:
-            c: Channel = get_channel(message._app, ci["id"])
-            channel_list.append(c)
+        try:
+            if ci["is_member"] or raw_list:
+                c: Channel = get_channel(message._app, ci["id"])
+                channel_list.append(c)
+        except:
+            print(f"is_member not present on {ci}")
 
     channel_list.sort(key=lambda x: x.name)
     
