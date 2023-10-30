@@ -20,6 +20,14 @@ def app_new_user_request(message, say):
     m: Message = Message(app, message, say)
     new_user_request(m)
 
+@app.event("team_join")
+def handle_team_join_events(body, logger):
+    print(f"NEW USER JOINED: {body}")
+    welcome_channel_id = "C0625KEQ2VD"
+    user_id = body["user"]
+    text = f"EXPERIMENTAL: User: <@{user_id}> joined."
+    #say(text=text, channel=welcome_channel_id)
+
 @app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
 def app_hey_sitecorebot(message, say):
     m: Message = Message(app, message, say)
@@ -31,9 +39,9 @@ def all_message_handler(message, say):
 
     if m.is_channel_message:
         fuzzy_score = crosspost_guardian(m)
-        print(f"{m.message_date_time_string}:#{m.channel.name} ({m.channel_id}):{m.user.name} ({m.user.id}):{m.text} [{fuzzy_score}]")
+        print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.user.name}:{m.text} [{fuzzy_score}]")
     else:
-        print(f"{m.message_date_time_string}:{m.channel_type}:{m.user.name} ({m.user.id}):{m.text}")
+        print(f"{m.message_date_time_string}:{m.channel_type}:@{m.user.name}:{m.text}")
         bot_command_handler(m)
 
 # not doing anything with @mentions of the bot yet
@@ -54,14 +62,6 @@ def handle_message_events(body, logger):
 @app.event("hello")
 def handle_hello_events(body, logger):
     print("Slack API said hello!")
-
-@app.event("team_join")
-def handle_team_join_events(event, say):
-    print(f"NEW USER JOINED: {event}")
-    welcome_channel_id = "C0625KEQ2VD"
-    user_id = event["user"]
-    text = f"EXPERIMENTAL: User: <@{user_id}> joined."
-    say(text=text, channel=welcome_channel_id)
 
 def main():
     print(f"{BOT_VERSION} starting...")
