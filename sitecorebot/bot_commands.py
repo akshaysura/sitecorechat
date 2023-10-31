@@ -99,14 +99,21 @@ def display_user_info(message: Message):
 
     user_id_regex = "@\w+"
     response = ""
+    found_users = 0
 
     for m in re.findall(user_id_regex, message.text):
         u: User = get_user(message._app, m[1:])
         if u:
             response += f"User: <@{u.id}> - Account Name: {u.name}, Real Name: {u.real_name}, Email: {u.email_address}\n"
+            found_users += 1
         else:
             response += f"User ID: {m} not found!\n"
-    
+
     response += "\nInformation given here is PII and should be treated as such! Don't share."
-    message.respond(response)
+
+    if found_users > 0:
+        message.respond(response)
+    else:
+        message.respond(f"Usage: lookup @user @user @user. Ex. 'lookup @mr.tamas.varga'")
+
     print(f"{message.message_date_time_string}:{message.user.name}:Looked up users:{message.text}")
