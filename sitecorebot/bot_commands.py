@@ -92,3 +92,21 @@ def display_channels(message: Message, raw_list=False):
 
 def display_all_channels(message: Message):
     display_channels(message, True)
+
+def display_user_info(message: Message):
+    import re
+    from user import User, get_user
+
+    user_id_regex = "@\w+"
+    response = ""
+
+    for m in re.findall(user_id_regex, message.text):
+        u: User = get_user(message._app, m[1:])
+        if u:
+            response += f"User: <@{u.id}> - Account Name: {u.name}, Real Name: {u.real_name}, Email: {u.email_address}\n"
+        else:
+            response += f"User ID: {m} not found!\n"
+    
+    response += "\nInformation given here is PII and should be treated as such! Don't share."
+    message.respond(response)
+    print(f"{message.message_date_time_string}:{message.user.name}:Looked up users:{message.text}")

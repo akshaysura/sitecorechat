@@ -13,7 +13,7 @@ user_tamasvarga = "U0BAH3W05"
 user_nicolemontero = "U01U3AMHVC0"
 
 bot_admins = [user_cassidydotdk, user_akshaysura, user_sitecorejunkie, user_jammykam, user_michaelwest, user_longhorntaco, user_marekmusielak, user_tamastarnok]
-mvp_coordinators = [user_tamasvarga, user_nicolemontero]
+community_coordinators = [user_tamasvarga, user_nicolemontero]
 
 class User:
     def __init__(self, app, userinfo):
@@ -38,12 +38,19 @@ class User:
         return self.id in bot_admins
     
     @property
-    def is_mvp_coordinator(self) -> bool:
-        return self.id in mvp_coordinators
+    def is_community_coordinator(self) -> bool:
+        return self.id in community_coordinators
     
     @property
     def real_name(self) -> str:
         return self._userinfo["real_name"]
+    
+    @property
+    def email_address(self) -> str:
+        if self._userinfo["profile"] and self._userinfo["profile"]["email"]:
+            return self._userinfo["profile"]["email"]
+        else:
+            return "<No Profile Information>"
 
 ### CACHING ###
 
