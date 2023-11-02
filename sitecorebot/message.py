@@ -45,7 +45,10 @@ class Message:
     @property
     def user(self) -> User:
         if not self._user:
-            self._user = get_user(self._app, self._message["user"])
+            try:
+                self._user = get_user(self._app, self._message["user"])
+            except:
+                print(f"ERROR. No 'user' information present on message: {self._message}")
         return self._user
 
     @property
@@ -55,7 +58,10 @@ class Message:
     @property
     def channel(self) -> Channel:
         if not self._channel:
-            self._channel = get_channel(self._app, self._message["channel"])
+            try:
+                self._channel = get_channel(self._app, self._message["channel"])
+            except:
+                print(f"ERROR. No 'channel' information present on message: {self._message}")
         return self._channel
 
     def get_permalink(self):

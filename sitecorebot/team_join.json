@@ -1,0 +1,56 @@
+{
+    "type":"team_join",
+    "user":{
+       "id":"U0636DFKJ31",
+       "team_id":"T09SHRBNU",
+       "name":"usama_khan",
+       "deleted":false,
+       "color":"e06b56",
+       "real_name":"Usama Khan",
+       "tz":"America/Chicago",
+       "tz_label":"Central Daylight Time",
+       "tz_offset":-18000,
+       "profile":{
+          "title":"",
+          "phone":"",
+          "skype":"",
+          "real_name":"Usama Khan",
+          "real_name_normalized":"Usama Khan",
+          "display_name":"Usama Khan",
+          "display_name_normalized":"Usama Khan",
+          "fields":{
+             
+          },
+          "status_text":"",
+          "status_emoji":"",
+          "status_emoji_display_info":[
+             
+          ],
+          "status_expiration":0,
+          "avatar_hash":"gcbe3da1b02f",
+          "first_name":"Usama",
+          "last_name":"Khan",
+          "image_24":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=24&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-24.png",
+          "image_32":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=32&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-32.png",
+          "image_48":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=48&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-48.png",
+          "image_72":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=72&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-72.png",
+          "image_192":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=192&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-192.png",
+          "image_512":"https://secure.gravatar.com/avatar/cbe3da1b02f393462801dfa09ea64a70.jpg?s=512&d=https%3A%2F%2Fa.slack-edge.com%2Fdf10d%2Fimg%2Favatars%2Fava_0011-512.png",
+          "status_text_canonical":"",
+          "team":"T09SHRBNU"
+       },
+       "is_admin":false,
+       "is_owner":false,
+       "is_primary_owner":false,
+       "is_restricted":false,
+       "is_ultra_restricted":false,
+       "is_bot":false,
+       "is_app_user":false,
+       "updated":1698768571,
+       "is_email_confirmed":true,
+       "who_can_share_contact_card":"EVERYONE",
+       "presence":"away"
+    },
+    "cache_ts":1698768571,
+    "event_ts":"1698768571.189500"
+ }
