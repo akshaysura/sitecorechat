@@ -7,6 +7,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": True,
+        "info": "Displays a list of commands available to you.",
         "callable": display_help
     },
     "joke": {
@@ -14,6 +15,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": True,
+        "info": "Displays a random joke.",
         "callable": display_joke
     },
     "changelog": {
@@ -21,6 +23,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
+        "info": "Displays the changelog for this bot.",
         "callable": display_changelog
     },
     "admins": {
@@ -28,6 +31,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
+        "info": "Lists the current admins for the Sitecore Community Slack.",
         "callable": display_admins
     },
     "channels": {
@@ -35,6 +39,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
+        "info": "Displays all channels this bot is currently registered in.",
         "callable": display_channels
     },
     "allchannels": {
@@ -42,6 +47,7 @@ bot_commands = {
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
+        "info": "Displays a list of all channels available on this Sitecore Community Slack",
         "callable": display_all_channels
     },
     "lookup": {
@@ -49,6 +55,7 @@ bot_commands = {
         "requires_community_coordinator": True,
         "allow_in_im": True,
         "allow_in_mpim": False,
+        "info": "Looks up user information based on a Slack user id. Ex.: `lookup @mr.tamas.varga`",
         "callable": display_user_info
     }
 }

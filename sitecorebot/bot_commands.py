@@ -1,12 +1,12 @@
 from message import Message
 
 def display_help(message: Message):
-    from bot_command_handler import get_allowed_commands
+    from bot_command_handler import get_allowed_commands, bot_commands
     allowed_commands = get_allowed_commands(message)
     response = "Here is a list of commands available to you: \n"
     command_list = ""
     for c in allowed_commands:
-        response += "- " + c + "\n"
+        response += "- `" + c + "` - " + bot_commands[c]["info"] + "\n"
         command_list += f"<{c}> "
     message.respond(response)
     print(f"{message.message_date_time_string}:{message.user.name} (is_bot_admin: {message.user.is_bot_admin}):Sent a List of Commands!:{command_list}")
