@@ -117,3 +117,16 @@ def display_user_info(message: Message):
         message.respond(f"Usage: lookup @user @user @user. Ex. 'lookup @mr.tamas.varga'")
 
     print(f"{message.message_date_time_string}:{message.user.name}:Looked up users:{message.text}")
+
+
+feedback_channel = "C0625KEQ2VD"
+
+def register_feedback(message: Message):
+    feedback = message.text.split(" ", 1)
+    if len(feedback) != 2:
+        message.respond("Usage: `feedback` your feedback here")
+        return
+    
+    feedback = feedback[1]
+    message.respond_to_channel(feedback_channel, f"FEEDBACK: {feedback}")
+    message.respond("Your feedback has been shared with the Sitecore Community Slack team. Thank you!")

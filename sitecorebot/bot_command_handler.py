@@ -1,5 +1,6 @@
 from message import Message
-from bot_commands import display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, display_user_info
+from bot_commands import display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, display_user_info, register_feedback
+from welcome import display_welcome
 
 bot_commands = {
     "help": {
@@ -57,6 +58,22 @@ bot_commands = {
         "allow_in_mpim": False,
         "info": "Looks up user information based on a Slack user id. Ex.: `lookup @mr.tamas.varga`",
         "callable": display_user_info
+    },
+    "welcome": {
+        "requires_bot_admin": False,
+        "requires_community_coordinator": True,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "info": "Displays the welcome messaging sent to new users joining this Sitecore Community Slack.",
+        "callable": display_welcome
+    },
+    "feedback": {
+        "requires_bot_admin": False,
+        "requires_community_coordinator": True,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "info": "Provide anonymous feedback to the people running this Sitecore Community Slack.",
+        "callable": register_feedback
     }
 }
 
