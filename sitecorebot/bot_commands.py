@@ -119,9 +119,10 @@ def display_user_info(message: Message):
     print(f"{message.message_date_time_string}:{message.user.name}:Looked up users:{message.text}")
 
 
-feedback_channel = "C0625KEQ2VD"
-
 def register_feedback(message: Message):
+    # community-feedback-discussion
+    feedback_channel = "C063MAHDS5U"
+
     feedback = message.text.split(" ", 1)
     if len(feedback) != 2:
         message.respond("Usage: `feedback` your feedback here")
@@ -131,5 +132,5 @@ def register_feedback(message: Message):
     message.respond_to_channel(feedback_channel, f"FEEDBACK: {feedback}")
     message.respond("Your feedback has been shared with the Sitecore Community Slack team. Thank you!")
 
-    # TODO: Remove, once we're happy it works as expected
+    # TODO: Anonymise, once we're happy it works as expected
     print(f"{message.message_date_time_string}:{message.user.name}:Feedback Provided:{message.text}")
