@@ -9,8 +9,8 @@ user_message_memory = {}
 crosspost_guardian_alert_channel = "C0625KEQ2VD"
 
 def crosspost_guardian(m: Message) -> int:
-    # We shouldn't get called for DMs, but just in case
-    if m.is_direct_message: return 0
+    # We shouldn't get called for DMs, but just in case. Bot messages (RSS feed etc) are also ignored.
+    if m.is_direct_message or m.is_bot_message: return 0
 
     # ignore short messages to avoid false positives on "ok", "right", "nice", "boot", ":smile:", and so on.
     if len(m.text) < MESSAGE_LENGTH_THRESHOLD: return 0

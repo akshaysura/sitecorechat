@@ -1,3 +1,5 @@
+02 Nov 2023 - version 0.3.7 - Automatic denial of /invite requests added (needs some testing still)
+
 02 Nov 2023 - version 0.3.6 - added `feedback` command
 
 02 Nov 2023 - version 0.3.5 - added help/explainer text to command list

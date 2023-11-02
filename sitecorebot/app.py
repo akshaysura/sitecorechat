@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.3.6"
+BOT_VERSION = "Sitecore Community Slackbot version 0.3.7"
 
 import os, re
 from slack_bolt import App
@@ -27,6 +27,13 @@ def handle_team_join_events(event, say):
     user_id = event["user"]["id"]
     text = f"EXPERIMENTAL: User: <@{user_id}> joined."
     say(text=text, channel=welcome_channel_id)
+
+@app.event("invite_requested")
+def handle_invite_requested_events(event, say):
+    from invite_requested import InviteRequest, handle_invite_requested
+    print(f"INVITE REQUESTED: {event}")
+    ir: InviteRequest = InviteRequest(app, event["invite_request"], say)
+    handle_invite_requested(ir)
 
 @app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
 def app_hey_sitecorebot(message, say):
