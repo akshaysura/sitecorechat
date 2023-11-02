@@ -16,7 +16,8 @@ class Message:
     
     @property
     def is_bot_message(self) -> bool:
-        return self._message["subtype"] == "bot_message"
+        return False
+#        return self._message["subtype"] == "bot_message"
 
     @property
     def is_im(self) -> bool:
