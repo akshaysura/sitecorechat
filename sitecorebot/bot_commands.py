@@ -130,3 +130,6 @@ def register_feedback(message: Message):
     feedback = feedback[1]
     message.respond_to_channel(feedback_channel, f"FEEDBACK: {feedback}")
     message.respond("Your feedback has been shared with the Sitecore Community Slack team. Thank you!")
+
+    # TODO: Remove, once we're happy it works as expected
+    print(f"{message.message_date_time_string}:{message.user.name}:Feedback Provided:{message.text}")
