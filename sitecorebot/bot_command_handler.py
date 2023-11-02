@@ -69,7 +69,7 @@ bot_commands = {
     },
     "feedback": {
         "requires_bot_admin": False,
-        "requires_community_coordinator": True,
+        "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
         "info": "Provide anonymous feedback to the people running this Sitecore Community Slack.",
