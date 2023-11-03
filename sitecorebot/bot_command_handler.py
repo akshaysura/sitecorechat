@@ -1,6 +1,6 @@
 from message import Message
 from bot_commands import display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, display_user_info, register_feedback
-from welcome import display_welcome
+from welcome import display_welcome, display_rules
 
 bot_commands = {
     "help": {
@@ -66,6 +66,14 @@ bot_commands = {
         "allow_in_mpim": False,
         "info": "Displays the welcome messaging sent to new users joining this Sitecore Community Slack.",
         "callable": display_welcome
+    },
+    "rules": {
+        "requires_bot_admin": False,
+        "requires_community_coordinator": True,
+        "allow_in_im": True,
+        "allow_in_mpim": False,
+        "info": "Displays the current rules and guidelines for this Sitecore Community Slack.",
+        "callable": display_rules
     },
     "feedback": {
         "requires_bot_admin": False,

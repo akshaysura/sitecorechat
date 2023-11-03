@@ -81,8 +81,8 @@ class Message:
     def respond_in_thread(self, response_message):
         self._say(text=response_message, thread_ts=self.message_ts)
 
-    def respond(self, response_message):
-        self._say(text=response_message, channel=self._message["channel"])
+    def respond(self, response_message, response_blocks=None):
+        self._say(text=response_message, channel=self._message["channel"], blocks=response_blocks)
 
     def respond_to_channel(self, channel_id, response_message):
         self._app.client.chat_postMessage(channel=channel_id, text=response_message)

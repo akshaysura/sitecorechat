@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.3.7"
+BOT_VERSION = "Sitecore Community Slackbot version 0.3.8"
 
 import os, re
 from slack_bolt import App
@@ -19,6 +19,7 @@ app = App(token=SLACK_BOT_TOKEN)
 def app_new_user_request(message, say):
     m: Message = Message(app, message, say)
     new_user_request(m)
+    app.client.chat_postEphemeral()
 
 @app.event("team_join")
 def handle_team_join_events(event, say):
