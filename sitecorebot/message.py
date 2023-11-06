@@ -78,11 +78,11 @@ class Message:
     def react(self, emoji="thumbsup"):
         self._app.client.reactions_add(channel=self.channel_id, timestamp=self.message_ts, name=emoji)
     
-    def respond_in_thread(self, response_message):
-        self._say(text=response_message, thread_ts=self.message_ts)
+    def respond_in_thread(self, response_message, response_blocks=None):
+        self._say(text=response_message, thread_ts=self.message_ts, response=response_blocks)
 
     def respond(self, response_message, response_blocks=None):
         self._say(text=response_message, channel=self._message["channel"], blocks=response_blocks)
 
-    def respond_to_channel(self, channel_id, response_message):
-        self._app.client.chat_postMessage(channel=channel_id, text=response_message)
+    def respond_to_channel(self, channel_id, response_message, response_blocks=None):
+        self._app.client.chat_postMessage(channel=channel_id, text=response_message, blocks=response_blocks)

@@ -1,3 +1,6 @@
+06 Nov 2023 - version 0.3.9 - Crosspost Guardian now ignores slackbot
+                              Crosspost Guardian now ignores suspected duplicates in same channel
+
 03 Nov 2023 - version 0.3.8 - Welcome message preview, and 'rules' command 
 
 02 Nov 2023 - version 0.3.7 - Automatic denial of /invite requests added (needs some testing still)
