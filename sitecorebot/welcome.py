@@ -3,6 +3,29 @@ from user import User, get_user
 
 BOT_IMAGE_PATH = "https://sitecore.chat/images/slackbot-profile-256x256.png"
 
+def handle_team_join(app, say, user_id):
+    u: User = get_user(app, user_id)
+    if not u:
+        print(f"ERROR: TEAM JOIN EVENT, USER NOT FOUND: {user_id}")
+        return
+
+    response_message = f"New User: <@{u.id}> ({u.real_name}) joined and was sent the following Welcome Message Sections: \n"
+    say(channel=user_id, text="Welcome Message", blocks=header_blocks)
+    response_message += "- Welcome Message \n"
+    say(channel=user_id, text="Divider1", blocks=divider_blocks)
+    response_message += "- -------\n"
+    say(channel=user_id, text="Rules", blocks=rules_overview_blocks)
+    response_message += "- Rules Overview\n"
+    say(channel=user_id, text="Divider2", blocks=divider_blocks)
+    response_message += "- -------\n"
+    say(channel=user_id, text="Footer", blocks=footer_blocks)
+    response_message += "- Footer \n\n🥳"
+    print(response_message)
+
+    welcome_channel_id = "C0625KEQ2VD"
+    say(text=response_message, channel=welcome_channel_id)
+    return
+
 def display_welcome(message: Message):
     message.respond("Welcome Response", header_blocks)
     message.respond("Divider1", divider_blocks)

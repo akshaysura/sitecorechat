@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.3.9"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.0"
 
 import os, re
 from slack_bolt import App
@@ -8,6 +8,7 @@ from new_user_request import new_user_request
 from hey_sitecorebot import hey_sitecorebot
 from crosspost_guardian import crosspost_guardian
 from bot_command_handler import bot_command_handler
+from welcome import handle_team_join
 from message import Message
 
 load_dotenv()
@@ -23,10 +24,8 @@ def app_new_user_request(message, say):
 @app.event("team_join")
 def handle_team_join_events(event, say):
     print(f"NEW USER JOINED: {event}")
-    welcome_channel_id = "C0625KEQ2VD"
     user_id = event["user"]["id"]
-    text = f"EXPERIMENTAL: User: <@{user_id}> joined."
-    say(text=text, channel=welcome_channel_id)
+    handle_team_join(app, say, user_id)
 
 @app.event("invite_requested")
 def handle_invite_requested_events(event, say):
