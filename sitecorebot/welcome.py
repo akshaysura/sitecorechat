@@ -23,7 +23,8 @@ def handle_team_join(app, say, user_id):
     print(response_message)
 
     welcome_channel_id = "C0625KEQ2VD"
-    say(text=response_message, channel=welcome_channel_id)
+    dbg = say(text=response_message, channel=welcome_channel_id)
+    print(f"DBG: {dbg}")
     return
 
 def display_welcome(message: Message):
