@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.0"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.1"
 
 import os, re
 from slack_bolt import App
@@ -10,6 +10,7 @@ from crosspost_guardian import crosspost_guardian
 from bot_command_handler import bot_command_handler
 from welcome import handle_team_join
 from message import Message
+from bot_memory import BotChannelMemory
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -18,6 +19,7 @@ app = App(token=SLACK_BOT_TOKEN)
 
 @app.message("New User Request")
 def app_new_user_request(message, say):
+    app.client.chat_postMessage()
     m: Message = Message(app, message, say)
     new_user_request(m)
 
@@ -46,6 +48,7 @@ def all_message_handler(message, say):
     if m.is_channel_message:
         fuzzy_score = crosspost_guardian(m)
         print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.user.name}:{m.text} [{fuzzy_score}]")
+        BotChannelMemory(m.channel_id, m.channel.name, m.message_ts).start()
     else:
         print(f"{m.message_date_time_string}:{m.channel_type}:@{m.user.name}:{m.text}")
         bot_command_handler(m)
