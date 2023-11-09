@@ -3,4 +3,3 @@ slack-sdk
 slack-bolt
 pyjokes
 thefuzz
-sqlite3
