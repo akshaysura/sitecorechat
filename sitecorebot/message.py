@@ -39,6 +39,11 @@ class Message:
     def channel_id(self) -> str:
         return self._message["channel"]
     
+    # set for bot messages
+    @property
+    def username(self) -> str:
+        return self._message["username"]
+    
     @property
     def message_ts(self) -> str:
         return self._message["ts"]

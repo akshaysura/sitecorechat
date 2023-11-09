@@ -47,7 +47,10 @@ def all_message_handler(message, say):
 
     if m.is_channel_message:
         fuzzy_score = crosspost_guardian(m)
-        print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.user.name}:{m.text} [{fuzzy_score}]")
+        if not m.is_bot_message:
+            print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.user.name}:{m.text} [{fuzzy_score}]")
+        else:
+            print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.username}:{m.text} [{fuzzy_score}]")
         BotChannelMemory(m.channel_id, m.channel.name, m.message_ts).start()
     else:
         print(f"{m.message_date_time_string}:{m.channel_type}:@{m.user.name}:{m.text}")
