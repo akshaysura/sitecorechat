@@ -19,7 +19,6 @@ app = App(token=SLACK_BOT_TOKEN)
 
 @app.message("New User Request")
 def app_new_user_request(message, say):
-    app.client.chat_postMessage()
     m: Message = Message(app, message, say)
     new_user_request(m)
 

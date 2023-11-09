@@ -15,7 +15,7 @@ def crosspost_guardian(m: Message) -> int:
     # ignore short messages to avoid false positives on "ok", "right", "nice", "boot", ":smile:", and so on.
     if len(m.text) < MESSAGE_LENGTH_THRESHOLD: return 0
 
-    if m.user.id == "U05GHTMUNTH": return 0 # Slackbot
+    if m.user.id == "U05GHTMUNTH": return 0 # Slackbot, which for some reason doesn't register as a bot_message
     
     if m.user.id in user_message_memory:
         message_list = user_message_memory[m.user.id]
