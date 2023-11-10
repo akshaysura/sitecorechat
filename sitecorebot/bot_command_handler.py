@@ -61,7 +61,7 @@ bot_commands = {
     },
     "welcome": {
         "requires_bot_admin": False,
-        "requires_community_coordinator": True,
+        "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
         "info": "Displays the welcome messaging sent to new users joining this Sitecore Community Slack.",
@@ -69,7 +69,7 @@ bot_commands = {
     },
     "rules": {
         "requires_bot_admin": False,
-        "requires_community_coordinator": True,
+        "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
         "info": "Displays the current rules and guidelines for this Sitecore Community Slack.",
