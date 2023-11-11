@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.1"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.2"
 
 import os, re
 from slack_bolt import App
@@ -11,6 +11,7 @@ from bot_command_handler import bot_command_handler
 from welcome import handle_team_join
 from message import Message
 from bot_memory import BotChannelMemory
+from usergroup_monitor import usergroup_monitor
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -24,7 +25,6 @@ def app_new_user_request(message, say):
 
 @app.event("team_join")
 def handle_team_join_events(event, say):
-    print(f"NEW USER JOINED: {event}")
     user_id = event["user"]["id"]
     handle_team_join(app, say, user_id)
 
@@ -39,6 +39,11 @@ def handle_invite_requested_events(event, say):
 def app_hey_sitecorebot(message, say):
     m: Message = Message(app, message, say)
     hey_sitecorebot(m)
+
+@app.message(re.compile("([uU]ser[gG]roup|[uU]ser [gG]roup|meetup.com)"))
+def app_usergroup_monitor(message, say):
+    m: Message = Message(app, message, say)
+    usergroup_monitor(m)
 
 @app.message(re.compile("^."))
 def all_message_handler(message, say):
