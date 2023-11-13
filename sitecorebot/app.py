@@ -73,7 +73,8 @@ def handle_reaction_added_events(body, logger):
 # catch-all for "message" events (message_changed, message_deleted)
 @app.event("message")
 def handle_message_events(event, say):
-    print(f"EVENT: {event}")
+    pass
+#    print(f"EVENT: {event}")
 
 @app.event("hello")
 def handle_hello_events(body, logger):
