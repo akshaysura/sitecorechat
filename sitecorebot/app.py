@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.2"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.3"
 
 import os, re
 from slack_bolt import App
@@ -72,12 +72,26 @@ def handle_reaction_added_events(body, logger):
 
 # catch-all for "message" events (message_changed, message_deleted)
 @app.event("message")
-def handle_message_events(body, logger):
-    pass
+def handle_message_events(event, say):
+    print(f"EVENT: {event}")
 
 @app.event("hello")
 def handle_hello_events(body, logger):
     print("Slack API said hello!")
+
+@app.action("interact_test_response_yes")
+def handle_some_action(ack, body, say):
+    ack()
+    m: Message = Message(app, body["message"], say)
+    response_message = f"User: {body['user']['username']} says YES!"
+    m.respond_in_thread(response_message)
+
+@app.action("interact_test_response_no")
+def handle_some_action(ack, body, say):
+    ack()
+    m: Message = Message(app, body["message"], say)
+    response_message = f"User: {body['user']['username']} says NEIN!"
+    m.respond_in_thread(response_message)
 
 def main():
     print(f"{BOT_VERSION} starting...")
