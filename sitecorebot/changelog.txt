@@ -1,3 +1,5 @@
+14 Nov 2023 - version 0.4.4 - SendGrid API integrated and New User Signup handling expanded with email action
+
 13 Nov 2023 - version 0.4.3 - Skeleton code for buttons/interactions put in place
 
 11 Nov 2023 - version 0.4.2 - Usergroup monitor filter launched, experimental

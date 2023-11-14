@@ -1,10 +1,10 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.3"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.4"
 
 import os, re
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
-from new_user_request import new_user_request
+from new_user_request import new_user_request, duplicate_user_handler
 from hey_sitecorebot import hey_sitecorebot
 from crosspost_guardian import crosspost_guardian
 from bot_command_handler import bot_command_handler
@@ -16,6 +16,8 @@ from usergroup_monitor import usergroup_monitor
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 SLACK_APP_TOKEN = os.environ["SLACK_APP_TOKEN"]
+SENDGRID_API_KEY = os.environ["SENDGRID_API_KEY"]
+
 app = App(token=SLACK_BOT_TOKEN)
 
 @app.message("New User Request")
@@ -93,6 +95,13 @@ def handle_some_action(ack, body, say):
     m: Message = Message(app, body["message"], say)
     response_message = f"User: {body['user']['username']} says NEIN!"
     m.respond_in_thread(response_message)
+
+@app.action("send_existing_user_email")
+def handle_duplicate_user_action(ack, body, say):
+    ack()
+    m: Message = Message(app, body["message"], say)
+    action_value = body["actions"][0]["value"]
+    duplicate_user_handler(m, action_value, SENDGRID_API_KEY)
 
 def main():
     print(f"{BOT_VERSION} starting...")
