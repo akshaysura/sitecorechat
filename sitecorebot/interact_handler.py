@@ -1,3 +1,6 @@
+# NO LONGER USED
+# KEPT AROUND FOR REFERENCE ONLY
+
 from message import Message
 
 interact_test_channel = "C062W6QCGGL"

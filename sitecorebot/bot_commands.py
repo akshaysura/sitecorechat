@@ -118,7 +118,6 @@ def display_user_info(message: Message):
 
     print(f"{message.message_date_time_string}:{message.user.name}:Looked up users:{message.text}")
 
-
 def register_feedback(message: Message):
     # community-feedback-discussion
     feedback_channel = "C063MAHDS5U"
@@ -134,3 +133,30 @@ def register_feedback(message: Message):
 
     # TODO: Anonymise, once we're happy it works as expected
     print(f"{message.message_date_time_string}:{message.user.name}:Feedback Provided:{message.text}")
+
+def display_stats(message: Message):
+    from bot_memory import stats_command
+
+    USAGE_TEXT = "USAGE: stats MM YY. E.g. `stats 11 23` for November 2023. To sort by channel name, use `stats 11 23 channel`."
+    cmd = message.text.split(" ")
+    if len(cmd) < 3:
+        message.respond(USAGE_TEXT)
+        return
+
+    month = 0
+    year = 0
+    sort_by_channel_name = False
+    try:
+        month = int(cmd[1])
+        year = int(cmd[2])
+    except:
+        message.respond(USAGE_TEXT)
+
+    if month < 1 or year > 30:
+        message.respond(USAGE_TEXT)
+        return
+
+    if len(cmd) > 3:
+        sort_by_channel_name = True
+
+    stats_command(message, month, year, sort_by_channel_name)

@@ -98,5 +98,3 @@ def duplicate_user_handler(m: Message, action_value: str, sendgrid_api_key: str)
         print(error_message)
         m.respond_in_thread(error_message)
         m._app.client.reactions_add(channel=channel, timestamp=original_message_ts, name="warning")
-
-    return

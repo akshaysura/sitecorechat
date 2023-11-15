@@ -1,7 +1,7 @@
 from message import Message
-from bot_commands import display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, display_user_info, register_feedback
+from bot_commands import    display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, \
+                            display_user_info, register_feedback, display_stats
 from welcome import display_welcome, display_rules
-from interact_handler import interact_command
 
 bot_commands = {
     "help": {
@@ -84,13 +84,13 @@ bot_commands = {
         "info": "Provide anonymous feedback to the people running this Sitecore Community Slack.",
         "callable": register_feedback
     },
-    "interact": {
-        "requires_bot_admin": True,
+    "stats": {
+        "requires_bot_admin": False,
         "requires_community_coordinator": False,
         "allow_in_im": True,
         "allow_in_mpim": False,
-        "info": "Bot Interaction test Command",
-        "callable": interact_command
+        "info": "Message Statistics for the Sitecore Community Slack.",
+        "callable": display_stats
     },
 }
 
