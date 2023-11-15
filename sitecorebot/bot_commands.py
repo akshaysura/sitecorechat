@@ -152,7 +152,7 @@ def display_stats(message: Message):
     except:
         message.respond(USAGE_TEXT)
 
-    if month < 1 or year > 30:
+    if month < 1 or month > 12 or year > 30:
         message.respond(USAGE_TEXT)
         return
 
