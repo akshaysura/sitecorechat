@@ -42,9 +42,11 @@ def app_hey_sitecorebot(message, say):
     m: Message = Message(app, message, say)
     hey_sitecorebot(m)
 
-@app.message(re.compile("([uU]ser[gG]roup|[uU]ser [gG]roup|meetup.com)"))
+@app.message(re.compile("(sugbce.in|zoom.us|webex.com|meetup.com)"))
 def app_usergroup_monitor(message, say):
     m: Message = Message(app, message, say)
+    if m.is_channel_message:
+        BotChannelMemory(m.channel_id, m.channel.name, m.message_ts).start()
     usergroup_monitor(m)
 
 @app.message(re.compile("^."))
@@ -81,20 +83,6 @@ def handle_message_events(event, say):
 @app.event("hello")
 def handle_hello_events(body, logger):
     print("Slack API said hello!")
-
-@app.action("interact_test_response_yes")
-def handle_some_action(ack, body, say):
-    ack()
-    m: Message = Message(app, body["message"], say)
-    response_message = f"User: {body['user']['username']} says YES!"
-    m.respond_in_thread(response_message)
-
-@app.action("interact_test_response_no")
-def handle_some_action(ack, body, say):
-    ack()
-    m: Message = Message(app, body["message"], say)
-    response_message = f"User: {body['user']['username']} says NEIN!"
-    m.respond_in_thread(response_message)
 
 @app.action("send_existing_user_email")
 def handle_duplicate_user_action(ack, body, say):
