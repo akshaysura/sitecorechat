@@ -1,3 +1,5 @@
+20 Nov 2023 - version 0.4.6 - url scanner online. All unique URLs are now logged to the bot memory
+
 15 Nov 2023 - version 0.4.5 - stats command implemented
 
 14 Nov 2023 - version 0.4.4 - SendGrid API integrated and New User Signup handling expanded with email action

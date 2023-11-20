@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.5"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.6"
 
 import os, re
 from slack_bolt import App
@@ -12,6 +12,7 @@ from welcome import handle_team_join
 from message import Message
 from bot_memory import BotChannelMemory
 from usergroup_monitor import usergroup_monitor
+from url_scanner import url_scanner
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -60,6 +61,7 @@ def all_message_handler(message, say):
         else:
             print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.username}:{m.text} [{fuzzy_score}]")
         BotChannelMemory(m.channel_id, m.channel.name, m.message_ts).start()
+        url_scanner(m.text)
     else:
         print(f"{m.message_date_time_string}:{m.channel_type}:@{m.user.name}:{m.text}")
         bot_command_handler(m)
@@ -90,6 +92,11 @@ def handle_duplicate_user_action(ack, body, say):
     m: Message = Message(app, body["message"], say)
     action_value = body["actions"][0]["value"]
     duplicate_user_handler(m, action_value, SENDGRID_API_KEY)
+
+@app.command("/communitybot")
+def handle_some_command(ack, body):
+    ack()
+    print(f"COMMAND: {body}")
 
 def main():
     print(f"{BOT_VERSION} starting...")

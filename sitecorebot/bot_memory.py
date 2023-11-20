@@ -25,6 +25,24 @@ class BotChannelMemory(threading.Thread):
         self.con.commit()
         self.con.close()
 
+class BotUrlMemory(threading.Thread):
+    def __init__(self, parsed_url):
+        threading.Thread.__init__(self)
+        self.parsed_url = parsed_url
+        self.full_url = f"{parsed_url.scheme}://{parsed_url.netloc}{parsed_url.path}"
+
+        self.con = sqlite3.connect(BOT_MEMORY_FILE, check_same_thread=False)
+        self.cursor = self.con.cursor()
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS unique_urls(id INTEGER PRIMARY KEY AUTOINCREMENT, " \
+                            "full_url VARCHAR(128), scheme VARCHAR(8), netloc VARCHAR(64), path VARCHAR(128), " \
+                            "db_timestamp DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL)")
+
+
+    def run(self):
+        self.cursor.execute(f"INSERT OR IGNORE INTO unique_urls (id, full_url, scheme, netloc, path) VALUES( (SELECT id FROM unique_urls WHERE full_url='{self.full_url}'), '{self.full_url}', '{self.parsed_url.scheme}', '{self.parsed_url.netloc}', '{self.parsed_url.path}')")
+        self.con.commit()
+        self.con.close()
+
 def select_stats(month: int, year: int, sort_by_channel_name: bool = False, app = None, include_private: bool = False):
     select_statement = f"SELECT COUNT(*), channel_id, channel_name FROM channel_stats WHERE db_timestamp BETWEEN '20{year:02d}-{month:02d}-01 00:00:01' AND '20{year:02d}-{month+1:02d}-01 00:00:00' GROUP BY channel_id"
 
@@ -74,13 +92,13 @@ def stats_command(m: Message, month: int, year: int, sort_by_channel_name: bool 
     print(f"STATISTICS FOR {month} {year} SENT to {m.user.name}")
 
 def main():
-    print(select_stats(11, 23, True))
-    # conn = sqlite3.connect(BOT_MEMORY_FILE)
-    # cur = conn.cursor()
+    # print(select_stats(11, 23, True))
+    conn = sqlite3.connect(BOT_MEMORY_FILE)
+    cur = conn.cursor()
 
-    # with conn:
-    #     cur.execute("SELECT * FROM channel_stats")
-    #     print(cur.fetchall())
+    with conn:
+        cur.execute("SELECT * FROM unique_urls")
+        print(cur.fetchall())
 
 if __name__ == "__main__":
     main()
