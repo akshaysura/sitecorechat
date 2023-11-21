@@ -98,7 +98,10 @@ def handle_duplicate_user_action(ack, body, say):
 def handle_some_command(ack, body, say):
     ack()
     bot_command_handler(app, body["user_id"], body["text"])
-    app.client.chat_postEphemeral(channel=body["channel_id"], user=body["user_id"], text="I've responded to you in an IM. Let's just keep this between the two of us 😉")
+    try:
+        app.client.chat_postEphemeral(channel=body["channel_id"], user=body["user_id"], text="I've responded to you in an IM. Let's just keep this between the two of us 😉")
+    except:
+        pass
 
 def main():
     print(f"{BOT_VERSION} starting...")
