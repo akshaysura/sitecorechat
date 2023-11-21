@@ -7,7 +7,7 @@ def url_scanner(text):
     words = text.split()
     urls = []
     for word in words:
-        parsed = urlparse(word.strip("<>").split("|")[0])
+        parsed = urlparse(word.strip("<>.,").split("|")[0])
         if parsed.scheme and parsed.netloc:
             include = True
             for ignored in IGNORE_DOMAINS:
