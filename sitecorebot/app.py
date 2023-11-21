@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.6"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.7"
 
 import os, re
 from slack_bolt import App
@@ -64,7 +64,8 @@ def all_message_handler(message, say):
         url_scanner(m.text)
     else:
         print(f"{m.message_date_time_string}:{m.channel_type}:@{m.user.name}:{m.text}")
-        bot_command_handler(m)
+        if m.is_im:
+            bot_command_handler(app, m.user.id, m.text)
 
 # not doing anything with @mentions of the bot yet
 @app.event("app_mention")
@@ -94,9 +95,10 @@ def handle_duplicate_user_action(ack, body, say):
     duplicate_user_handler(m, action_value, SENDGRID_API_KEY)
 
 @app.command("/communitybot")
-def handle_some_command(ack, body):
+def handle_some_command(ack, body, say):
     ack()
-    print(f"COMMAND: {body}")
+    bot_command_handler(app, body["user_id"], body["text"])
+    app.client.chat_postEphemeral(channel=body["channel_id"], user=body["user_id"], text="I've responded to you in an IM. Let's just keep this between the two of us 😉")
 
 def main():
     print(f"{BOT_VERSION} starting...")

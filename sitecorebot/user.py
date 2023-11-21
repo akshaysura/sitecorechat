@@ -51,6 +51,9 @@ class User:
             return self._userinfo["profile"]["email"]
         else:
             return "<No Profile Information>"
+        
+    def send_im_message(self, text=None, blocks=None):
+        self._app.client.chat_postMessage(channel=self.id, text=text, blocks=blocks)
 
 ### CACHING ###
 
