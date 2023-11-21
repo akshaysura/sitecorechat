@@ -21,15 +21,15 @@ def handle_team_join(app, say, user_id):
     say(text=response_message, channel=welcome_channel_id)
     return
 
-def display_welcome(message: Message):
-    message.respond("Welcome Response", header_blocks)
-    message.respond("Divider1", divider_blocks)
-    message.respond("Rules", rules_overview_blocks)
-    message.respond("Divider2", divider_blocks)
-    message.respond("Footer", footer_blocks)
+def display_welcome(app, user, command_text):
+    user.send_im_message("Welcome Response", header_blocks)
+    user.send_im_message("Divider1", divider_blocks)
+    user.send_im_message("Rules", rules_overview_blocks)
+    user.send_im_message("Divider2", divider_blocks)
+    user.send_im_message("Footer", footer_blocks)
 
-def display_rules(message: Message):
-    message.respond("Rules", rules_blocks)
+def display_rules(app, user, command_text):
+    user.send_im_message("Rules", rules_blocks)
 
 divider_blocks = [
     {
