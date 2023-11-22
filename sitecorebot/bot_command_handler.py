@@ -96,7 +96,7 @@ def get_allowed_commands(user: User) -> {}:
         allow = True
         if bot_commands[c]["requires_bot_admin"]: allow = user.is_bot_admin
         if allow:
-            bot_commands[c]["requires_community_coordinator"]: allow = (user.is_bot_admin or user.is_community_coordinator)
+            if bot_commands[c]["requires_community_coordinator"]: allow = (user.is_bot_admin or user.is_community_coordinator)
 
         if allow:
             allowed_commands[c] = c
