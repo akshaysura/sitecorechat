@@ -5,7 +5,6 @@ from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 from new_user_request import new_user_request, duplicate_user_handler
-from hey_sitecorebot import hey_sitecorebot
 from crosspost_guardian import crosspost_guardian
 from bot_command_handler import bot_command_handler
 from welcome import handle_team_join
@@ -37,11 +36,6 @@ def handle_invite_requested_events(event, say):
     print(f"INVITE REQUESTED: {event}")
     ir: InviteRequest = InviteRequest(app, event["invite_request"], say)
     handle_invite_requested(ir)
-
-@app.message(re.compile("([hH]ey|[hH]ello) [sS]itecore[bB]ot"))
-def app_hey_sitecorebot(message, say):
-    m: Message = Message(app, message, say)
-    hey_sitecorebot(m)
 
 @app.message(re.compile("(sugbce.in|zoom.us|webex.com|meetup.com)"))
 def app_usergroup_monitor(message, say):

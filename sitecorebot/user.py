@@ -1,3 +1,5 @@
+from slack_bolt import App
+
 # bot admin users
 user_cassidydotdk = "U0D8XHJSH"
 user_akshaysura = "U09SJ4FGW"
@@ -56,7 +58,6 @@ class User:
         self._app.client.chat_postMessage(channel=self.id, text=text, blocks=blocks)
 
 ### CACHING ###
-
 cache_users = {}
 
 def get_user(app, user_id) -> User:
@@ -72,7 +73,7 @@ def get_user(app, user_id) -> User:
             print(f"ERR: User Not Found! ({user_id})")
             return None
 
-def get_user_by_email(app, email) -> User:
+def get_user_by_email(app: App, email) -> User:
         try:
             userinfo_request = app.client.users_lookupByEmail(email=email)
             return get_user(app, userinfo_request["user"]["id"])

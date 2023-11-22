@@ -19,11 +19,15 @@ Done. That's all the steps.
 
         SLACK_BOT_TOKEN= Copy this from OAuth Tokens for Your Workspace on https://api.slack.com/apps/A062D72K36J/oauth?
         SLACK_APP_TOKEN= Copy this from App-Level Tokens -> sitecore_community_slackbot_token on https://api.slack.com/apps/A062D72K36J/general
+        SENDGRID_API_KEY= Copy this from your SendGrid configuration settings. SendGrid is only used in the welcome.py module and can be omitted otherwise
 
 3. And then run the bot. Either directly -> `python app.py` or open `code app.py` and run it via the "Play" button top right. F5 probably also works.
 
 ## Profit!
 The bot is (currently) configured to run in [Sockets Mode](https://api.slack.com/apis/connections/socket), so no further configuration is required. It will connect directly to Slack's API servers and get to work.
+
+Be mindful that if multiple instances of the bot is running (e.g. live, and on your dev machine), Slack gets a little wonky. Only one of the instances will be notified
+of events, and it's not always predictable which one it is.
 
 ## API Documentation
 

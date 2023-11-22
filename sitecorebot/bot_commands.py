@@ -1,8 +1,8 @@
-import time
-from message import Message
-from user import User
+import time, re
+from user import User, get_user
+from slack_bolt import App
 
-def display_help(app, user: User, command_text):
+def display_help(app: App, user: User, command_text: str):
     from bot_command_handler import get_allowed_commands, bot_commands
     allowed_commands = get_allowed_commands(user)
     response = "Here is a list of commands available to you: \n"
@@ -13,7 +13,7 @@ def display_help(app, user: User, command_text):
     user.send_im_message(text=response)
     print(f"{time.ctime(time.time())}:{user.name} (is_bot_admin: {user.is_bot_admin}):Sent a List of Commands!:{command_list}")
 
-def display_joke(app, user: User, command_text):
+def display_joke(app: App, user: User, command_text: str):
     import pyjokes
     new_joke = pyjokes.get_joke()
     user.send_im_message(new_joke)
@@ -30,7 +30,7 @@ def display_changelog(app, user: User, command_text):
     user.send_im_message(response)
     print(f"{time.ctime(time.time())}:{user.name}:Changelog Sent!")
 
-def display_admins(app, user: User, command_text):
+def display_admins(app: App, user: User, command_text: str):
     import random
     from user import get_user, bot_admins
 
@@ -45,7 +45,7 @@ def display_admins(app, user: User, command_text):
     user.send_im_message(response)
     print(f"{time.ctime(time.time())}:{user.name}:Was Sent a List of Admins!")
 
-def display_channels(app, user: User, command_text, raw_list=False):
+def display_channels(app: App, user: User, command_text: str, raw_list=False):
     from channel import Channel, get_channel
 
     if raw_list:
@@ -92,13 +92,10 @@ def display_channels(app, user: User, command_text, raw_list=False):
     user.send_im_message(response)
     print(f"{time.ctime(time.time())}:{user.name}:Was Sent a List of Channels!")
 
-def display_all_channels(app, user: User, command_text):
+def display_all_channels(app: App, user: User, command_text: str):
     display_channels(app, user, command_text, True)
 
-def display_user_info(app, user: User, command_text):
-    import re
-    from user import User, get_user
-
+def display_user_info(app: App, user: User, command_text: str):
     user_id_regex = "@\w+"
     response = ""
     found_users = 0
@@ -120,7 +117,7 @@ def display_user_info(app, user: User, command_text):
 
     print(f"{time.ctime(time.time())}:{user.name}:Looked up users:{command_text}")
 
-def register_feedback(app, user: User, command_text):
+def register_feedback(app: App, user: User, command_text: str):
     # community-feedback-discussion
     feedback_channel = "C063MAHDS5U"
 
@@ -136,7 +133,7 @@ def register_feedback(app, user: User, command_text):
     # TODO: Anonymise, once we're happy it works as expected
     print(f"{time.ctime(time.time())}:{user.name}:Feedback Provided:{command_text}")
 
-def display_stats(app, user: User, command_text):
+def display_stats(app: App, user: User, command_text: str):
     from bot_memory import stats_command
 
     USAGE_TEXT = "USAGE: stats MM YY. E.g. `stats 11 23` for November 2023. To sort by channel name, use `stats 11 23 channel`."

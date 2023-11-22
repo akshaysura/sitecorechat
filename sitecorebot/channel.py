@@ -59,7 +59,6 @@ class Channel:
         return bool(self._channel_info["is_member"])
 
 ### CACHING ###
-
 cache_channels = {}
 
 def get_channel(app, channel_id) -> Channel:

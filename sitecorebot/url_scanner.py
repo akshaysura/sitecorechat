@@ -1,7 +1,7 @@
 from urllib.parse import urlparse
 from bot_memory import BotUrlMemory
 
-IGNORE_DOMAINS = ["reddit.com", "stackexchange.com", "linkedin.com"]
+IGNORE_DOMAINS = ["reddit.com", "stackexchange.com", "linkedin.com", "youtube.com", "sitecore.com", "sitecore.net"]
 
 def url_scanner(text):
     words = text.split()

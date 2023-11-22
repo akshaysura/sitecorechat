@@ -3,7 +3,6 @@ BOT_MEMORY_FILE = "botmemory.db"
 import time
 import threading
 import sqlite3
-from message import Message
 from user import User
 from channel import Channel, get_channel
 
@@ -71,7 +70,7 @@ def select_stats(month: int, year: int, sort_by_channel_name: bool = False, app 
     else:
         return sorted(stats_dict.items(), key=lambda x: x[1], reverse=True)
 
-def stats_command(app, user, command_text, month: int, year: int, sort_by_channel_name: bool = False):
+def stats_command(app, user: User, command_text: str, month: int, year: int, sort_by_channel_name: bool = False):
     if (month < 11 and year == 23) or (year < 23):
         user.send_im_message("The Sitecore Community Slackbot did not achieve sentience until some time in November 2023. Requesting any statistics prior to that will not provide any result. \n\n" \
                   "Say... \n\n" \

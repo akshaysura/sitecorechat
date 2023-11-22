@@ -1,4 +1,3 @@
-from message import Message
 from user import User, get_user
 from bot_commands import    display_help, display_joke, display_changelog, display_admins, display_channels, display_all_channels, \
                             display_user_info, register_feedback, display_stats
@@ -74,6 +73,7 @@ bot_commands = {
 }
 
 def bot_command_handler(app, user_id, command_text):
+    """Main entry point for all bot commands. Uses the user_id to determine which commands are available to that user, and will parse the command itself from command_text"""
     user: User = get_user(app, user_id)
     if not user:
         print(f"ERROR: INCOMING COMMAND USER NOT FOUND: {user_id}")
