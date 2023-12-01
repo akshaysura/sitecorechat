@@ -1,5 +1,3 @@
-from user import User, get_user
-
 # invite notification channel zInvite
 invite_notification_channel = "CA6SNF4NQ"
 

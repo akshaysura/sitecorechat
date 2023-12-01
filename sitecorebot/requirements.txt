@@ -4,3 +4,4 @@ slack-bolt
 pyjokes
 thefuzz
 sendgrid
+expiring-dict

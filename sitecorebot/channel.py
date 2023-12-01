@@ -1,3 +1,5 @@
+import random
+from expiring_dict import ExpiringDict
 
 class Channel:
     def __init__(self, app, channel_info):
@@ -59,7 +61,7 @@ class Channel:
         return bool(self._channel_info["is_member"])
 
 ### CACHING ###
-cache_channels = {}
+cache_channels = ExpiringDict()
 
 def get_channel(app, channel_id) -> Channel:
     if channel_id in cache_channels:
@@ -68,7 +70,8 @@ def get_channel(app, channel_id) -> Channel:
         try:
             channel_info = app.client.conversations_info(channel=channel_id, include_num_members=True)["channel"]
             channel = Channel(app, channel_info=channel_info)
-            cache_channels[channel_id] = channel
+            # Using a random expiry between 24 and 48 hours, to prevent massively spamming the Slack API all at once
+            cache_channels.ttl(channel_id, channel, random.randint(86400, 86400*2))
             return channel
         except:
             print(f"ERR: Channel Not Found! ({channel_id})")
