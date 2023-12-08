@@ -3,6 +3,7 @@ from slack_bolt import App
 from message import Message, get_message_permalink
 from user import User, get_user, is_bot_admin_user, is_community_coordinator
 from channel import Channel, get_channel
+from welcome import BOT_IMAGE_PATH
 
 SNIPPETS_IMAGE_PATH = "https://sitecore.chat/images/snippets.png"
 REACTION_COUNT_THRESHOLD = 3
@@ -96,9 +97,9 @@ snippets_blocks = [
         },
         "accessory": {
             "type": "image",
-            "image_url": SNIPPETS_IMAGE_PATH,
-            "alt_text": "How to create Snippets in Slack"
-        }
+            "image_url": BOT_IMAGE_PATH,
+            "alt_text": "Sitecore Community Slackbot Profile Image"
+        },
     },
 ]
 
