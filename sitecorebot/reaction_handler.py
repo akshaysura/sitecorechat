@@ -1,3 +1,4 @@
+import copy
 from slack_bolt import App
 from message import Message, get_message_permalink
 from user import User, get_user, is_bot_admin_user, is_community_coordinator
@@ -66,12 +67,11 @@ def get_reaction_handler(reaction: str) -> callable:
     return None
 
 def block_replacer(app: App, input, channel_id, message_id):
-    output = []
-    for n in input:
+    output = copy.deepcopy(input)
+    for n in output:
         if n["text"]["text"]:
             n["text"]["text"] = n["text"]["text"].replace("#MESS#", get_message_permalink(app, channel_id, message_id)["permalink"])
-        output.append(n)
-    return input
+    return output
 
 snippets_blocks = [
     {
