@@ -1,6 +1,7 @@
 import time
 from user import User, get_user
 from channel import Channel, get_channel
+from slack_bolt import App
 
 class Message:
     def __init__(self, app, message, say):
@@ -75,10 +76,7 @@ class Message:
         return self._channel
 
     def get_permalink(self):
-        try:
-            return self._app.client.chat_getPermalink(channel=self.channel_id, message_ts=self.message_ts)["permalink"]
-        except:
-            return None
+        return get_message_permalink(self._app, self.channel_id, self.message_ts)
 
     def react(self, emoji="thumbsup"):
         self._app.client.reactions_add(channel=self.channel_id, timestamp=self.message_ts, name=emoji)
@@ -91,3 +89,15 @@ class Message:
 
     def respond_to_channel(self, channel_id, response_message, response_blocks=None):
         self._app.client.chat_postMessage(channel=channel_id, text=response_message, blocks=response_blocks)
+
+def get_message_permalink(app: App, channel_id, message_ts):
+    try:
+        return app.client.chat_getPermalink(channel=channel_id, message_ts=message_ts)
+    except:
+        return None
+
+def get_message(app: App, channel_id, message_id) -> Message:
+    messages = app.client.conversations_history(channel=channel_id, latest=message_id, inclusive=True, limit=1)
+    if len(messages) > 0:
+        print(messages[0])
+    return None

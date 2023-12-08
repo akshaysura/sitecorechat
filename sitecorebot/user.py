@@ -1,4 +1,6 @@
+import random
 from slack_bolt import App
+from expiring_dict import ExpiringDict
 
 # bot admin users
 user_cassidydotdk = "U0D8XHJSH"
@@ -58,7 +60,13 @@ class User:
         self._app.client.chat_postMessage(channel=self.id, text=text, blocks=blocks)
 
 ### CACHING ###
-cache_users = {}
+cache_users = ExpiringDict()
+
+def is_bot_admin_user(user_id) -> bool:
+    return user_id in bot_admins
+
+def is_community_coordinator(user_id) -> bool:
+    return user_id in community_coordinators
 
 def get_user(app, user_id) -> User:
     if user_id in cache_users:
@@ -67,7 +75,7 @@ def get_user(app, user_id) -> User:
         try:
             userinfo = app.client.users_info(user=user_id)["user"]
             user = User(app, userinfo)
-            cache_users[user_id] = user
+            cache_users.ttl(user_id, user, random.randint(3600, 7200))
             return user
         except:
             print(f"ERR: User Not Found! ({user_id})")

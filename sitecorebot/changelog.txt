@@ -1,3 +1,4 @@
+06 Dec 2023 - version 0.4.8 - framework for the reacion handler established
 21 Nov 2023 - version 0.4.7 - /communitybot command interface implemwented
 20 Nov 2023 - version 0.4.6 - url scanner online. All unique URLs are now logged to the bot memory
 15 Nov 2023 - version 0.4.5 - stats command implemented

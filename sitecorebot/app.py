@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.7"
+BOT_VERSION = "Sitecore Community Slackbot version 0.4.8"
 
 import os, re
 from slack_bolt import App
@@ -12,6 +12,7 @@ from message import Message
 from bot_memory import BotChannelMemory
 from usergroup_monitor import usergroup_monitor
 from url_scanner import url_scanner
+from reaction_handler import reaction_handler
 
 load_dotenv()
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
@@ -66,10 +67,16 @@ def all_message_handler(message, say):
 def handle_app_mention_events(body, logger):
     pass
 
-# not doing anything with reactions yet
 @app.event("reaction_added")
-def handle_reaction_added_events(body, logger):
-    pass
+def handle_reaction_added_events(ack, event, say):
+    ack()
+    if event["item_user"] and event["item"]["type"] == "message":
+        reaction = event["reaction"]
+        user_id = event["user"]
+        item_user_id = event["item_user"]
+        channel_id = event["item"]["channel"]
+        message_id = event["item"]["ts"]
+        reaction_handler(app, user_id, reaction, item_user_id, channel_id, message_id)
 
 # catch-all for "message" events (message_changed, message_deleted)
 @app.event("message")
