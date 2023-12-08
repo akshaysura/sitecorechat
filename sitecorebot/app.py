@@ -70,7 +70,7 @@ def handle_app_mention_events(body, logger):
 @app.event("reaction_added")
 def handle_reaction_added_events(ack, event, say):
     ack()
-    if event["item_user"] and event["item"]["type"] == "message":
+    if "item_user" in event and event["item"]["type"] == "message":
         reaction = event["reaction"]
         user_id = event["user"]
         item_user_id = event["item_user"]
