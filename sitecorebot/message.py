@@ -92,7 +92,7 @@ class Message:
 
 def get_message_permalink(app: App, channel_id, message_ts):
     try:
-        return app.client.chat_getPermalink(channel=channel_id, message_ts=message_ts)["permalink"]
+        return app.client.chat_getPermalink(channel=channel_id, message_ts=message_ts)
     except:
         return None
 
