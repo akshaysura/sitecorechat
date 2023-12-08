@@ -5,7 +5,7 @@ from user import User, get_user, is_bot_admin_user, is_community_coordinator
 from channel import Channel, get_channel
 from welcome import BOT_IMAGE_PATH
 
-SNIPPETS_IMAGE_PATH = "https://sitecore.chat/images/snippets-anim-help.gif"
+SNIPPETS_IMAGE_PATH = "https://sitecore.chat/images/snippets-anim-help-square.gif"
 REACTION_COUNT_THRESHOLD = 3
 CARBON_COPY_CHANNEL = "C0625KEQ2VD"
 
