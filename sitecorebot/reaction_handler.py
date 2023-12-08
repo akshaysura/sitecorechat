@@ -3,7 +3,7 @@ from message import Message, get_message_permalink
 from user import User, get_user, is_bot_admin_user, is_community_coordinator
 from channel import Channel, get_channel
 
-SNIPPERS_IMAGE_PATH = "https://sitecore.chat/images/snippets.png"
+SNIPPETS_IMAGE_PATH = "https://sitecore.chat/images/snippets.png"
 REACTION_COUNT_THRESHOLD = 3
 CARBON_COPY_CHANNEL = "C0625KEQ2VD"
 
@@ -41,10 +41,10 @@ def reaction_handler(app: App, user_id, reaction, item_user_id, channel_id, mess
 
 def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
     message_user = get_user(app, item_user_id)
-    app.client.chat_postMessage(channel=item_user_id, text="Snippets Instruction!", blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
+    app.client.chat_postMessage(channel=item_user_id, text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
     print(f":snippets: explanatory text sent to user: @{message_user.name}")
     r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f":snippets: Reaction Handled, Snippets instruction text sent to user <@{item_user_id}>. Below is what was sent.")
-    app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
+    app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
     app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. The user has been sent friendly guidance on the use of Snippets in Slack!")
 
 reactions = {
@@ -96,12 +96,15 @@ snippets_blocks = [
         },
         "accessory": {
             "type": "image",
-            "image_url": SNIPPERS_IMAGE_PATH,
+            "image_url": SNIPPETS_IMAGE_PATH,
             "alt_text": "How to create Snippets in Slack"
         }
     },
 ]
 
 snippets_attachments = [
-
+    {
+        "title": "How to use Snippets!",
+        "image_url": SNIPPETS_IMAGE_PATH,
+    }
 ]
