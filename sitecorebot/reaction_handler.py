@@ -43,7 +43,7 @@ def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
     message_user = get_user(app, item_user_id)
     app.client.chat_postMessage(channel=item_user_id, text="Snippets Instruction!", blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
     print(f":snippets: explanatory text sent to user: @{message_user.name}")
-    r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f"Reaction Handled, Snippets instruction text sent to user <@{item_user_id}>. Below is what was sent.")
+    r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f":snippets: Reaction Handled, Snippets instruction text sent to user <@{item_user_id}>. Below is what was sent.")
     app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
     app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. The user has been sent friendly guidance on the use of Snippets in Slack!")
 
@@ -100,4 +100,8 @@ snippets_blocks = [
             "alt_text": "How to create Snippets in Slack"
         }
     },
+]
+
+snippets_attachments = [
+
 ]
