@@ -70,7 +70,7 @@ def block_replacer(app: App, input, channel_id, message_id):
     output = copy.deepcopy(input)
     for n in output:
         if n["text"]["text"]:
-            n["text"]["text"] = n["text"]["text"].replace("#MESS#", get_message_permalink(app, channel_id, message_id)["permalink"])
+            n["text"]["text"] = n["text"]["text"].replace("#MESS#", get_message_permalink(app, channel_id, message_id))
     return output
 
 snippets_blocks = [
