@@ -8,6 +8,7 @@ from welcome import BOT_IMAGE_PATH
 SNIPPETS_IMAGE_PATH = "https://sitecore.chat/images/snippets-anim-help-square.gif"
 REACTION_COUNT_THRESHOLD = 3
 CARBON_COPY_CHANNEL = "C0625KEQ2VD"
+TRUSTED_USERS = ["U09TGL4BE"]
 
 reaction_memory = []
 
@@ -24,7 +25,7 @@ def reaction_handler(app: App, user_id, reaction, item_user_id, channel_id, mess
     
     handler = get_reaction_handler(reaction)
     if handler:
-        react_now = is_bot_admin_user(user_id) or is_community_coordinator(user_id)
+        react_now = is_bot_admin_user(user_id) or is_community_coordinator(user_id) or user_id in TRUSTED_USERS
         if not react_now:
             # if not reacting right away, figure out if enough users have reacted to warrant going ahead anyway
             count = get_reaction_count(app, channel_id, message_id, reaction)
