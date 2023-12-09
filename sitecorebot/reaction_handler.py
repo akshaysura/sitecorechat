@@ -1,4 +1,4 @@
-import copy
+import copy, time
 from slack_bolt import App
 from message import Message, get_message_permalink
 from user import User, get_user, is_bot_admin_user, is_community_coordinator
@@ -21,7 +21,7 @@ def reaction_handler(app: App, user_id, reaction, item_user_id, channel_id, mess
     reacting_user = get_user(app, user_id)
     message_user = get_user(app, item_user_id)
     channel = get_channel(app, channel_id)
-    print(f"User: {reacting_user.name} is reacting with :{reaction}: to {message_user.name}'s message in channel: {channel.name}")
+    print(f"{time.ctime(time.time())}:User: {reacting_user.name} is reacting with :{reaction}: to {message_user.name}'s message in channel: {channel.name}")
     
     handler = get_reaction_handler(reaction)
     if handler:
@@ -43,12 +43,17 @@ def reaction_handler(app: App, user_id, reaction, item_user_id, channel_id, mess
                 pass
 
 def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
-    message_user = get_user(app, item_user_id)
     app.client.chat_postMessage(channel=item_user_id, text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
-    print(f":snippets: explanatory text sent to user: @{message_user.name}")
-    r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f":snippets: Reaction Handled, Snippets instruction text sent to user <@{item_user_id}>. Below is what was sent.")
+    app.client.reactions_add(channel=channel_id, timestamp=message_id, name="checkered_flag")
+
+    trigger_user: User = get_user(app, user_id)
+    message_user: User = get_user(app, item_user_id)
+    print(f"{time.ctime(time.time())}:snippets: explanatory text sent to user: @{message_user.name}. It was triggered by user: @{trigger_user.name}")
+
+    app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. <@{message_user}> has been sent friendly guidance on the use of Snippets in Slack!")
+
+    r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f"Reaction Handled :snippets:, triggered by <@{user_id}>. Snippets instruction text sent in a DM to user <@{item_user_id}>. Below is what was sent.")
     app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
-    app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. The user has been sent friendly guidance on the use of Snippets in Slack!")
 
 reactions = {
     "snippets": snippets_handler,
@@ -110,3 +115,5 @@ snippets_attachments = [
         "image_url": SNIPPETS_IMAGE_PATH,
     }
 ]
+
+print(f"Reaction Handler Online. Monitored Reactions: {list(reactions.keys())}. Trusted users: {TRUSTED_USERS}")
