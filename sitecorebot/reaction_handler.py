@@ -50,7 +50,7 @@ def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
     message_user: User = get_user(app, item_user_id)
     print(f"{time.ctime(time.time())}:snippets: explanatory text sent to user: @{message_user.name}. It was triggered by user: @{trigger_user.name}")
 
-    app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. <@{message_user}> has been sent friendly guidance on the use of Snippets in Slack!")
+    app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. <@{item_user_id}> has been sent friendly guidance on the use of Snippets in Slack!")
 
     r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f"Reaction Handled :snippets:, triggered by <@{user_id}>. Snippets instruction text sent in a DM to user <@{item_user_id}>. Below is what was sent.")
     app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
