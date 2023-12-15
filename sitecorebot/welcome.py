@@ -27,11 +27,11 @@ def display_welcome(app, user, command_text):
     user.send_im_message("Rules", rules_overview_blocks)
     user.send_im_message("Divider2", divider_blocks)
     user.send_im_message("Footer", footer_blocks)
-    print(f"{time.ctime(time.time())}:WELCOME command: Welcome message was sent!")
+    print(f"{time.ctime(time.time())}:WELCOME command: Welcome message was sent! Command Text: {command_text}")
 
 def display_rules(app, user, command_text):
     user.send_im_message("Rules", rules_blocks)
-    print(f"{time.ctime(time.time())}:RULES command: Rules message was sent!")
+    print(f"{time.ctime(time.time())}:RULES command: Rules message was sent! Command Text: {command_text}")
 
 divider_blocks = [
     {

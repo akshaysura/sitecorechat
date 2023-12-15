@@ -41,7 +41,10 @@ def display_admins(app: App, user: User, command_text: str):
         u = get_user(app, user_id)
         response += f"- {u.real_name} - <@{u.id}>\n"
 
-    response += f"\nFeel free to reach out to any of them, if you have something on your mind in regards to this Sitecore Community Slack."
+    response += f"\nFeel free to reach out to any of them, if you have something on your mind in regards to this Sitecore Community Slack.\n\n"
+    response += f"If you want to provide general feedback to the community team, use the `feedback` feature for this. Just type `feedback <your feedback here>` in response to this message.\n\n"
+    response += f"Alternatively you can use `/communitybot feedback <your feedback here>` from anywhere on this Slack Community."
+    
     user.send_im_message(response)
     print(f"{time.ctime(time.time())}:{user.name}:Was Sent a List of Admins!")
 
