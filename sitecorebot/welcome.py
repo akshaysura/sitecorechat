@@ -1,24 +1,24 @@
-from message import Message
+import time
 from user import User, get_user
 
 BOT_IMAGE_PATH = "https://sitecore.chat/images/slackbot-profile-256x256.png"
+WELCOME_CHANNEL_ID = "C06A9HY37B4"
 
 def handle_team_join(app, say, user_id):
     u: User = get_user(app, user_id)
     if not u:
-        print(f"ERROR: TEAM JOIN EVENT, USER NOT FOUND: {user_id}")
+        print(f"{time.ctime(time.time())}:ERROR: TEAM JOIN EVENT, USER NOT FOUND: {user_id}")
         return
 
-    response_message = f"New User: <@{u.id}> ({u.real_name}) joined 🥳. Welcome message was sent."
+    response_message = f"New User: <@{u.id}> ({u.real_name}) joined our community 🥳"
     say(channel=user_id, text="Welcome Message", blocks=header_blocks)
     say(channel=user_id, text="Divider1", blocks=divider_blocks)
     say(channel=user_id, text="Rules", blocks=rules_overview_blocks)
     say(channel=user_id, text="Divider2", blocks=divider_blocks)
     say(channel=user_id, text="Footer", blocks=footer_blocks)
-    print(response_message)
+    print(f"{time.ctime(time.time())}:NEW USER JOINED: {response_message}")
 
-    welcome_channel_id = "C063MAHDS5U"
-    say(text=response_message, channel=welcome_channel_id)
+    say(text=response_message, channel=WELCOME_CHANNEL_ID)
     return
 
 def display_welcome(app, user, command_text):
@@ -219,3 +219,5 @@ rules_blocks = [
         }
     },
 ]
+
+print("New User Joined monitor is online!")

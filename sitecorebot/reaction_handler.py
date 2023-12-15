@@ -13,8 +13,8 @@ TRUSTED_USERS = ["U09TGL4BE"]
 reaction_memory = []
 
 def reaction_handler(app: App, user_id, reaction, item_user_id, channel_id, message_id):
-    # drop out immediately if we've already acted on this message
-    umid = channel_id+message_id
+    # drop out immediately if we've already acted on this message/reaction combination
+    umid = channel_id+message_id+reaction
     if umid in reaction_memory:
         return
 
