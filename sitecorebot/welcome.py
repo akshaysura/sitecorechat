@@ -2,7 +2,7 @@ import time
 from user import User, get_user
 
 BOT_IMAGE_PATH = "https://sitecore.chat/images/slackbot-profile-256x256.png"
-WELCOME_CHANNEL_ID = "C06A9HY37B4"
+WELCOME_CHANNEL_ID = "C09SJ4FHC"
 
 def handle_team_join(app, say, user_id):
     u: User = get_user(app, user_id)
