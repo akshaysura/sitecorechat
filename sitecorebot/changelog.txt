@@ -1,0 +1,23 @@
+06 Dec 2023 - version 0.4.9 - :snippets: reaction handler implemented
+06 Dec 2023 - version 0.4.8 - framework for the reacion handler established
+21 Nov 2023 - version 0.4.7 - /communitybot command interface implemwented
+20 Nov 2023 - version 0.4.6 - url scanner online. All unique URLs are now logged to the bot memory
+15 Nov 2023 - version 0.4.5 - stats command implemented
+14 Nov 2023 - version 0.4.4 - SendGrid API integrated and New User Signup handling expanded with email action
+13 Nov 2023 - version 0.4.3 - Skeleton code for buttons/interactions put in place
+11 Nov 2023 - version 0.4.2 - Usergroup monitor filter launched, experimental
+09 Nov 2023 - version 0.4.1 - Bot now collects basic anonymous channel message statistics
+07 Nov 2023 - version 0.4.0 - Team Join event handled, new arrivals are sent our welcome message
+06 Nov 2023 - version 0.3.9 - Crosspost Guardian now ignores slackbot
+                              Crosspost Guardian now ignores suspected duplicates in same channel
+03 Nov 2023 - version 0.3.8 - Welcome message preview, and 'rules' command 
+02 Nov 2023 - version 0.3.7 - Automatic denial of /invite requests added (needs some testing still)
+02 Nov 2023 - version 0.3.6 - added `feedback` command
+02 Nov 2023 - version 0.3.5 - added help/explainer text to command list
+31 Oct 2023 - version 0.3.4 - added 'lookup' command to bot admins and community coordinators. Can looup a user and return name and email.
+30 Oct 2023 - version 0.3.3 - experimental code to catch a new user joining, implemented
+28 Oct 2023 - version 0.3.2 - 'channels' and 'allchannels' (bot admin) commands added
+27 Oct 2023 - version 0.3.1 - 'admins' command added
+27 Oct 2023 - version 0.3.0 - IM Command handler
+25 Oct 2023 - version 0.2.0 - Crosspost Guardian
+24 Oct 2023 - version 0.1.0 - Initial Release

@@ -1,0 +1,62 @@
+{
+    "ok":true,
+    "user":{
+       "id":"U0D8XHJSH",
+       "team_id":"T09SHRBNU",
+       "name":"cassidydotdk",
+       "deleted":false,
+       "color":"8d4b84",
+       "real_name":"Mark Cassidy",
+       "tz":"Europe/Amsterdam",
+       "tz_label":"Central European Summer Time",
+       "tz_offset":7200,
+       "profile":{
+          "title":"International Sitecore Consultant",
+          "phone":"",
+          "skype":"",
+          "real_name":"Mark Cassidy",
+          "real_name_normalized":"Mark Cassidy",
+          "display_name":"cassidydotdk",
+          "display_name_normalized":"cassidydotdk",
+          "fields":"None",
+          "status_text":"Available for consulting and contract work world-wide!",
+          "status_emoji":":flag-ch:",
+          "status_emoji_display_info":[
+             {
+                "emoji_name":"flag-ch",
+                "display_url":"https://a.slack-edge.com/production-standard-emoji-assets/14.0/apple-large/1f1e8-1f1ed.png",
+                "unicode":"1f1e8-1f1ed"
+             }
+          ],
+          "status_expiration":0,
+          "avatar_hash":"a954bac74af3",
+          "image_original":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_original.png",
+          "is_custom_image":true,
+          "email":"mark@cassidy.dk",
+          "huddle_state":"default_unset",
+          "huddle_state_expiration_ts":0,
+          "first_name":"Mark",
+          "last_name":"Cassidy",
+          "image_24":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_24.png",
+          "image_32":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_32.png",
+          "image_48":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_48.png",
+          "image_72":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_72.png",
+          "image_192":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_192.png",
+          "image_512":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_512.png",
+          "image_1024":"https://avatars.slack-edge.com/2023-06-02/5366567075796_a954bac74af39d5b5282_1024.png",
+          "status_text_canonical":"",
+          "team":"T09SHRBNU"
+       },
+       "is_admin":true,
+       "is_owner":false,
+       "is_primary_owner":false,
+       "is_restricted":false,
+       "is_ultra_restricted":false,
+       "is_bot":false,
+       "is_app_user":false,
+       "updated":1696255884,
+       "is_email_confirmed":true,
+       "who_can_share_contact_card":"EVERYONE"
+    }
+ }
+ 

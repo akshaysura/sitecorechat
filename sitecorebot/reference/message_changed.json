@@ -1,0 +1,115 @@
+{
+    "type":"message",
+    "subtype":"message_changed",
+    "message":{
+       "client_msg_id":"36625e7f-2f3f-401e-b1ab-93663fd1fe78",
+       "type":"message",
+       "text":"Hi all, Our build pipelines are failing for the url: <https://artifacts.sitecore.com/public/resources/nuget>. We are using the Sitecore Nuget Public feeds, <https://nuget.sitecore.com/resources/v3/index.json>. Anyone else facing this issue or knows a resolution for this one?\n\nThis is the error message we are getting:\n```The request was aborted: Could not create SSL/TLS secure channel.\n##[error]The nuget command failed with exit code(1) and error(Failed to retrieve information about 'Newtonsoft.Json' from remote source '<https://artifacts.sitecore.com/public/resources/nuget/newtonsoft.json/index.json>'.```",
+       "user":"U83T7JN6Q",
+       "blocks":[
+          {
+             "type":"rich_text",
+             "block_id":"NjlsJ",
+             "elements":[
+                {
+                   "type":"rich_text_section",
+                   "elements":[
+                      {
+                         "type":"text",
+                         "text":"Hi all, Our build pipelines are failing for the url: "
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://artifacts.sitecore.com/public/resources/nuget"
+                      },
+                      {
+                         "type":"text",
+                         "text":". We are using the Sitecore Nuget Public feeds, "
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://nuget.sitecore.com/resources/v3/index.json"
+                      },
+                      {
+                         "type":"text",
+                         "text":". Anyone else facing this issue or knows a resolution for this one?\n\nThis is the error message we are getting:\n"
+                      }
+                   ]
+                },
+                {
+                   "type":"rich_text_preformatted",
+                   "elements":[
+                      {
+                         "type":"text",
+                         "text":"The request was aborted: Could not create SSL/TLS secure channel.\n##[error]The nuget command failed with exit code(1) and error(Failed to retrieve information about 'Newtonsoft.Json' from remote source '"
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://artifacts.sitecore.com/public/resources/nuget/newtonsoft.json/index.json"
+                      },
+                      {
+                         "type":"text",
+                         "text":"'."
+                      }
+                   ],
+                   "border":0
+                }
+             ]
+          }
+       ],
+       "team":"T09SHRBNU",
+       "edited":{
+          "user":"U83T7JN6Q",
+          "ts":"1699881838.000000"
+       },
+       "ts":"1699881771.021099",
+       "source_team":"T09SHRBNU",
+       "user_team":"T09SHRBNU"
+    },
+    "previous_message":{
+       "client_msg_id":"36625e7f-2f3f-401e-b1ab-93663fd1fe78",
+       "type":"message",
+       "text":"Hi all, Our build pipelines are failing for the url: <https://artifacts.sitecore.com/public/resources/nuget>. We are using the Sitecore Nuget Public feeds, <https://nuget.sitecore.com/resources/v3/index.json>. Anyone else facing this issue or knows a resolution for this one?",
+       "user":"U83T7JN6Q",
+       "ts":"1699881771.021099",
+       "blocks":[
+          {
+             "type":"rich_text",
+             "block_id":"XxqHV",
+             "elements":[
+                {
+                   "type":"rich_text_section",
+                   "elements":[
+                      {
+                         "type":"text",
+                         "text":"Hi all, Our build pipelines are failing for the url: "
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://artifacts.sitecore.com/public/resources/nuget"
+                      },
+                      {
+                         "type":"text",
+                         "text":". We are using the Sitecore Nuget Public feeds, "
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://nuget.sitecore.com/resources/v3/index.json"
+                      },
+                      {
+                         "type":"text",
+                         "text":". Anyone else facing this issue or knows a resolution for this one?"
+                      }
+                   ]
+                }
+             ]
+          }
+       ],
+       "team":"T09SHRBNU"
+    },
+    "channel":"C09SJ4FHC",
+    "hidden":true,
+    "ts":"1699881838.003100",
+    "event_ts":"1699881838.003100",
+    "channel_type":"channel"
+ }

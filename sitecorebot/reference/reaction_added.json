@@ -1,0 +1,12 @@
+{
+    "type":"reaction_added",
+    "user":"U0D8XHJSH",
+    "reaction":"+1",
+    "item":{
+       "type":"message",
+       "channel":"C0625KEQ2VD",
+       "ts":"1701920080.620649"
+    },
+    "item_user":"U062DGD78MU",
+    "event_ts":"1702013002.000700"
+ }

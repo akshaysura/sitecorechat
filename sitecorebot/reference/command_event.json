@@ -1,0 +1,15 @@
+{
+    "token":"w29lpgilnYK4B5BE0oxhnJcL",
+    "team_id":"T09SHRBNU",
+    "team_domain":"sitecorechat",
+    "channel_id":"C062W6QCGGL",
+    "channel_name":"sitecorebot-sandbox2",
+    "user_id":"U0D8XHJSH",
+    "user_name":"cassidydotdk",
+    "command":"/communitybot",
+    "text":"Hey there",
+    "api_app_id":"A062D72K36J",
+    "is_enterprise_install":"false",
+    "response_url":"https://hooks.slack.com/commands/T09SHRBNU/6237477571601/8rIT83N6bdpqAJZJ4Uwyz5YP",
+    "trigger_id":"6224743530371.9901861776.cef6a39a112c8e3470f4d8c2b43daff0"
+ }

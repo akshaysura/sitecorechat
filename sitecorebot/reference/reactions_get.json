@@ -1,0 +1,164 @@
+{
+    "ok":true,
+    "type":"message",
+    "message":{
+       "bot_id":"B062NK063JQ",
+       "type":"message",
+       "text":"USERGROUP MESSAGE (suspected): <https://sitecorechat.slack.com/archives/C2XED7L9K/p1701920079696909> in channel <#C2XED7L9K>.",
+       "user":"U062DGD78MU",
+       "ts":"1701920080.620649",
+       "app_id":"A062D72K36J",
+       "blocks":[
+          {
+             "type":"rich_text",
+             "block_id":"xrEh+",
+             "elements":[
+                {
+                   "type":"rich_text_section",
+                   "elements":[
+                      {
+                         "type":"text",
+                         "text":"USERGROUP MESSAGE (suspected): "
+                      },
+                      {
+                         "type":"link",
+                         "url":"https://sitecorechat.slack.com/archives/C2XED7L9K/p1701920079696909"
+                      },
+                      {
+                         "type":"text",
+                         "text":" in channel "
+                      },
+                      {
+                         "type":"channel",
+                         "channel_id":"C2XED7L9K"
+                      },
+                      {
+                         "type":"text",
+                         "text":"."
+                      }
+                   ]
+                }
+             ]
+          }
+       ],
+       "team":"T09SHRBNU",
+       "bot_profile":{
+          "id":"B062NK063JQ",
+          "deleted":false,
+          "name":"Sitecore Community Slackbot",
+          "updated":1698331438,
+          "app_id":"A062D72K36J",
+          "icons":{
+             "image_36":"https://avatars.slack-edge.com/2023-10-26/6103024638308_5e48d75bf89e113c6177_36.png",
+             "image_48":"https://avatars.slack-edge.com/2023-10-26/6103024638308_5e48d75bf89e113c6177_48.png",
+             "image_72":"https://avatars.slack-edge.com/2023-10-26/6103024638308_5e48d75bf89e113c6177_72.png"
+          },
+          "team_id":"T09SHRBNU"
+       },
+       "attachments":[
+          {
+             "from_url":"https://sitecorechat.slack.com/archives/C2XED7L9K/p1701920079696909",
+             "ts":"1701920079.696909",
+             "author_id":"UCMET3CSD",
+             "channel_id":"C2XED7L9K",
+             "channel_team":"T09SHRBNU",
+             "is_msg_unfurl":true,
+             "message_blocks":[
+                {
+                   "team":"T09SHRBNU",
+                   "channel":"C2XED7L9K",
+                   "ts":"1701920079.696909",
+                   "message":{
+                      "blocks":[
+                         {
+                            "type":"rich_text",
+                            "block_id":"PGu3u",
+                            "elements":[
+                               {
+                                  "type":"rich_text_section",
+                                  "elements":[
+                                     {
+                                        "type":"text",
+                                        "text":"If anyone is interested to join the Sitecore Auckland/Wellington user group (virtually) at 6pm NZT today, you can do it on teams:\n"
+                                     },
+                                     {
+                                        "type":"link",
+                                        "url":"https://www.meetup.com/wellington-sitecore-user-group/events/297807028"
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":"\n\n"
+                                     },
+                                     {
+                                        "type":"user",
+                                        "user_id":"U0BAH3W05"
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":" is going to present on \""
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":"Sitecore Community and the MVP Program",
+                                        "style":{
+                                           "bold":true
+                                        }
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":"\".\n"
+                                     },
+                                     {
+                                        "type":"user",
+                                        "user_id":"U4HKJEHTQ"
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":" is presenting \""
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":"Parsing Sitecore rules and running them in pure JS without any BE rather than GraphQL",
+                                        "style":{
+                                           "bold":true
+                                        }
+                                     },
+                                     {
+                                        "type":"text",
+                                        "text":"\""
+                                     }
+                                  ]
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                }
+             ],
+             "id":1,
+             "original_url":"https://sitecorechat.slack.com/archives/C2XED7L9K/p1701920079696909",
+             "fallback":"[December 6th, 2023 7:34 PM] gitesh.shah: If anyone is interested to join the Sitecore Auckland/Wellington user group (virtually) at 6pm NZT today, you can do it on teams:\n<https://www.meetup.com/wellington-sitecore-user-group/events/297807028>\n\n<@U0BAH3W05> is going to present on \"*Sitecore Community and the MVP Program*\".\n<@U4HKJEHTQ> is presenting \"*Parsing Sitecore rules and running them in pure JS without any BE rather than GraphQL*\"",
+             "text":"If anyone is interested to join the Sitecore Auckland/Wellington user group (virtually) at 6pm NZT today, you can do it on teams:\n<https://www.meetup.com/wellington-sitecore-user-group/events/297807028>\n\n<@U0BAH3W05> is going to present on \"*Sitecore Community and the MVP Program*\".\n<@U4HKJEHTQ> is presenting \"*Parsing Sitecore rules and running them in pure JS without any BE rather than GraphQL*\"",
+             "author_name":"Gitesh Shah",
+             "author_link":"https://sitecorechat.slack.com/team/UCMET3CSD",
+             "author_icon":"https://avatars.slack-edge.com/2018-09-06/431447150662_a4382c37e18fa61ae02e_48.jpg",
+             "author_subname":"Gitesh Shah",
+             "mrkdwn_in":[
+                "text"
+             ],
+             "footer":"Slack Conversation"
+          }
+       ],
+       "reactions":[
+          {
+             "name":"snippets",
+             "users":[
+                "U0D8XHJSH"
+             ],
+             "count":1
+          }
+       ],
+       "permalink":"https://sitecorechat.slack.com/archives/C0625KEQ2VD/p1701920080620649"
+    },
+    "channel":"C0625KEQ2VD"
+ }

@@ -1,0 +1,19 @@
+{
+    "type": "invite_requested",
+    "invite_request": {
+        "id": "string",
+        "email": "string",
+        "date_created": "int",
+        "requester_ids": "[string]",
+        "channel_ids": "[string]",
+        "invite_type": "string",
+        "real_name": "string",
+        "date_expire": "int",
+        "request_reason": "string",
+        "team": {
+            "id": "string",
+            "name": "string",
+            "domain": "string"
+        }
+    }
+}
