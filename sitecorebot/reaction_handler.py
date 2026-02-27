@@ -55,8 +55,24 @@ def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
     r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f"Reaction Handled :snippets:, triggered by <@{user_id}>. Snippets instruction text sent in a DM to user <@{item_user_id}>. Below is what was sent.")
     app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Snippets Instruction!", attachments=snippets_attachments, blocks=block_replacer(app, snippets_blocks, channel_id, message_id))
 
+def rules_handler(app: App, user_id, item_user_id, channel_id, message_id):
+    from welcome import rules_blocks
+    app.client.chat_postMessage(channel=item_user_id, text="Community Rules", blocks=block_replacer(app, rules_intro_blocks, channel_id, message_id))
+    app.client.chat_postMessage(channel=item_user_id, text="Rules", blocks=rules_blocks)
+    app.client.reactions_add(channel=channel_id, timestamp=message_id, name="checkered_flag")
+
+    trigger_user: User = get_user(app, user_id)
+    message_user: User = get_user(app, item_user_id)
+    print(f"{time.ctime(time.time())}:rules: community rules sent to user: @{message_user.name}. It was triggered by user: @{trigger_user.name}")
+
+    app.client.chat_postEphemeral(channel=channel_id, user=user_id, text=f"Thank you. <@{item_user_id}> has been sent a friendly reminder of our community rules!")
+
+    r = app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, text=f"Reaction Handled :rules:, triggered by <@{user_id}>. Community rules sent in a DM to user <@{item_user_id}>. Below is what was sent.")
+    app.client.chat_postMessage(channel=CARBON_COPY_CHANNEL, thread_ts=r["ts"], text="Community Rules", blocks=block_replacer(app, rules_intro_blocks, channel_id, message_id))
+
 reactions = {
     "snippets": snippets_handler,
+    "rules": rules_handler,
 }
 
 def get_reaction_count(app: App, channel_id, message_ts, reaction) -> int:
@@ -114,6 +130,34 @@ snippets_attachments = [
         "title": "How to use Snippets!",
         "image_url": SNIPPETS_IMAGE_PATH,
     }
+]
+
+rules_intro_blocks = [
+    {
+        "type": "header",
+        "text": {
+            "type": "plain_text",
+            "text": "A friendly reminder about our community rules!",
+            "emoji": True,
+        }
+    },
+    {
+        "type": "section",
+        "text": {
+            "type": "mrkdwn",
+            "text": f"Hey there 🙂 \n\nI'm the Sitecore Community Slackbot!\n\n" \
+                "I'm writing to you in regards to your message #MESS#. \n\n" \
+                "Don't worry, nothing bad is going on! But your message has been flagged with :rules: " \
+                "and I'm here to give you a friendly reminder of our community guidelines 🙂 \n\n" \
+                "Please take a moment to review the rules below. They help keep our community " \
+                "a welcoming and productive place for everyone. Thanks for being part of the Sitecore Community! \n\n"
+        },
+        "accessory": {
+            "type": "image",
+            "image_url": BOT_IMAGE_PATH,
+            "alt_text": "Sitecore Community Slackbot Profile Image"
+        },
+    },
 ]
 
 print(f"Reaction Handler Online. Monitored Reactions: {list(reactions.keys())}. Trusted users: {TRUSTED_USERS}")

@@ -84,6 +84,14 @@ Key channel IDs are hardcoded in various modules (moderation channel, welcome ch
 
 ## Changelog
 
+### v0.5.1
+- **New Feature: `:rules:` Reaction Handler**
+  - React with `:rules:` on any message to send the poster a DM with community rules
+  - Admins/coordinators/trusted users trigger immediately
+  - Regular users need 3+ reactions before it triggers
+  - Includes intro message referencing the flagged post, followed by full rules
+  - Logs action to carbon copy channel
+
 ### v0.5.0
 - **New Feature: Mention Guardian** (`mention_guardian.py`)
   - Detects when users @ mention other members in channel messages
