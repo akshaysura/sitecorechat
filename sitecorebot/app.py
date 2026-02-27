@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.4.9"
+BOT_VERSION = "Sitecore Community Slackbot version 0.5.0"
 
 import os, re
 from slack_bolt import App
@@ -6,6 +6,7 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 from new_user_request import new_user_request, duplicate_user_handler
 from crosspost_guardian import crosspost_guardian
+from mention_guardian import mention_guardian
 from bot_command_handler import bot_command_handler
 from welcome import handle_team_join
 from message import Message
@@ -51,6 +52,7 @@ def all_message_handler(message, say):
 
     if m.is_channel_message:
         fuzzy_score = crosspost_guardian(m)
+        mention_guardian(app, m)
         if not m.is_bot_message:
             print(f"{m.message_date_time_string}:#{m.channel.name}:@{m.user.name}:{m.text} [{fuzzy_score}]")
         else:
@@ -94,6 +96,14 @@ def handle_duplicate_user_action(ack, body, say):
     m: Message = Message(app, body["message"], say)
     action_value = body["actions"][0]["value"]
     duplicate_user_handler(m, action_value, SENDGRID_API_KEY)
+
+@app.action("mention_guardian_show_rules")
+def handle_mention_guardian_show_rules(ack, body, say):
+    ack()
+    from welcome import display_rules
+    from user import get_user
+    user = get_user(app, body["user"]["id"])
+    display_rules(app, user, "rules")
 
 @app.command("/communitybot")
 def handle_some_command(ack, body, say):
