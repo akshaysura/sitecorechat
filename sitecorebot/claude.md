@@ -84,6 +84,12 @@ Key channel IDs are hardcoded in various modules (moderation channel, welcome ch
 
 ## Changelog
 
+### v0.5.2
+- **Sitecore-to-Sitecore Exception**
+  - Sitecore employees (@sitecore.com/@sitecore.net) can tag other Sitecore employees without triggering the Rule #4 warning
+  - Added `is_sitecore_employee` property to User class
+  - If a Sitecore employee tags a mix of Sitecore + community members, warning still triggers
+
 ### v0.5.1
 - **New Feature: `:rules:` Reaction Handler**
   - React with `:rules:` on any message to send the poster a DM with community rules

@@ -55,6 +55,11 @@ class User:
             return self._userinfo["profile"]["email"]
         else:
             return "<No Profile Information>"
+
+    @property
+    def is_sitecore_employee(self) -> bool:
+        email = self.email_address.lower()
+        return email.endswith("@sitecore.com") or email.endswith("@sitecore.net")
         
     def send_im_message(self, text=None, blocks=None):
         self._app.client.chat_postMessage(channel=self.id, text=text, blocks=blocks)

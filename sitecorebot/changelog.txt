@@ -1,3 +1,4 @@
+27 Feb 2026 - version 0.5.2 - Sitecore-to-Sitecore exception: employees can tag other employees without warning
 27 Feb 2026 - version 0.5.1 - :rules: reaction handler: sends community rules DM when message is flagged
 27 Feb 2026 - version 0.5.0 - Mention Guardian: warns users who @ mention others (Rule #4 reminder)
 06 Dec 2023 - version 0.4.9 - :snippets: reaction handler implemented

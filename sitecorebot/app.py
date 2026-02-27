@@ -1,4 +1,4 @@
-BOT_VERSION = "Sitecore Community Slackbot version 0.5.1"
+BOT_VERSION = "Sitecore Community Slackbot version 0.5.2"
 
 import os, re
 from slack_bolt import App

@@ -2,7 +2,7 @@ import re
 import time
 from message import Message
 from welcome import BOT_IMAGE_PATH
-from user import bot_admins, community_coordinators
+from user import bot_admins, community_coordinators, get_user
 
 # Regex pattern to match Slack user mentions: <@U12345678>
 MENTION_PATTERN = re.compile(r'<@(U[A-Z0-9]+)>')
@@ -53,6 +53,14 @@ def mention_guardian(app, m: Message) -> bool:
     # If no mentions of other users, nothing to do
     if not mentions:
         return False
+
+    # Sitecore-to-Sitecore exception: Sitecore employees can tag other Sitecore employees
+    if m.user.is_sitecore_employee:
+        mentioned_users = [get_user(app, uid) for uid in mentions]
+        # Check if ALL mentioned users are Sitecore employees
+        if all(u and u.is_sitecore_employee for u in mentioned_users):
+            print(f"{time.ctime(time.time())}:MentionGuardian:Sitecore-to-Sitecore mention by @{m.user.name} - skipping warning")
+            return False
 
     # Send ephemeral warning
     try:
