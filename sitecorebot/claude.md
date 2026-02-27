@@ -106,3 +106,36 @@ Key channel IDs are hardcoded in various modules (moderation channel, welcome ch
 
 ### Previous versions
 See `changelog.txt` for earlier history.
+
+---
+
+## Session Notes
+
+### 2026-02-27
+
+**Features implemented:**
+- Mention Guardian (v0.5.0) - ephemeral Rule #4 reminders when users @ mention others
+- `:rules:` reaction handler (v0.5.1) - sends community rules DM when message flagged
+
+**Infrastructure:**
+- Created `claude.md` for project documentation
+- Updated `.gitignore` to exclude `botmemory.db` and `.claude/`
+- Removed `botmemory.db` from git tracking (file preserved locally)
+- Set up local git identity for commits
+
+**Explored but parked:**
+- kapa.ai MCP integration (`sitecore.mcp.kapa.ai`) for documentation queries
+  - Would require API key from Sitecore's kapa.ai instance
+  - Could enable `@communitybot what's the latest version of X?` queries
+  - Contact Tamas Varga (U0BAH3W05) for API access if revisiting
+
+**Deployment:**
+- Bot runs on Azure VM (`cassidy-ubuntu`) in tmux session
+- Path: `~/git/sitecorechat/sitecorebot/`
+- Start: `tmux new -s bot` then `python3 app.py`
+- Detach: `Ctrl+b d`
+
+**Useful tmux commands:**
+- `tmux ls` - list sessions
+- `tmux attach -t bot` - reattach
+- `Ctrl+b [` - scroll mode (q to exit)
