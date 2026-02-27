@@ -139,3 +139,55 @@ See `changelog.txt` for earlier history.
 - `tmux ls` - list sessions
 - `tmux attach -t bot` - reattach
 - `Ctrl+b [` - scroll mode (q to exit)
+
+---
+
+## Future Improvements (Parked)
+
+### Automated Deployment via GitHub Actions
+
+Current setup: Manual SSH via Azure Portal CLI, tmux session.
+
+**Recommended approach: Self-hosted GitHub Runner**
+1. Install GitHub Actions runner on the Azure VM
+2. Jobs run directly on the VM (no SSH/credentials needed)
+3. Combined with systemd service for proper process management
+
+**systemd service** (`/etc/systemd/system/sitecorebot.service`):
+```ini
+[Unit]
+Description=Sitecore Community Slackbot
+After=network.target
+
+[Service]
+Type=simple
+User=mark@cassidy.dk
+WorkingDirectory=/home/mark@cassidy.dk/git/sitecorechat/sitecorebot
+ExecStart=/usr/bin/python3 app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**GitHub Action** (`.github/workflows/deploy.yml`):
+```yaml
+name: Deploy
+on:
+  push:
+    branches: [master]
+    paths: ['sitecorebot/**']
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Pull and restart
+        run: |
+          cd ~/git/sitecorechat
+          git pull
+          sudo systemctl restart sitecorebot
+```
+
+**Alternative:** Use `az vm run-command` if self-hosted runner isn't desired (requires Azure service principal credentials in GitHub secrets).
