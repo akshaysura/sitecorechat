@@ -58,7 +58,10 @@ def snippets_handler(app: App, user_id, item_user_id, channel_id, message_id):
 def rules_handler(app: App, user_id, item_user_id, channel_id, message_id):
     from welcome import rules_blocks
     app.client.chat_postMessage(channel=item_user_id, text="Community Rules", blocks=block_replacer(app, rules_intro_blocks, channel_id, message_id))
-    app.client.chat_postMessage(channel=item_user_id, text="Rules", blocks=rules_blocks)
+    try:
+        app.client.chat_postMessage(channel=item_user_id, text="Rules", blocks=rules_blocks)
+    except Exception as e:
+        print(f"ERROR sending rules_blocks: {e}")
     app.client.reactions_add(channel=channel_id, timestamp=message_id, name="checkered_flag")
 
     trigger_user: User = get_user(app, user_id)
