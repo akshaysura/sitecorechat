@@ -14,10 +14,10 @@ user_tamastarnok = "U3H1FSTU2"
 
 # mvp program coordinators
 user_tamasvarga = "U0BAH3W05"
-user_nicolemontero = "U01U3AMHVC0"
+user_sebastianwinter = "U5MQFRZA8"
 
 bot_admins = [user_cassidydotdk, user_akshaysura, user_sitecorejunkie, user_jammykam, user_michaelwest, user_longhorntaco, user_marekmusielak, user_tamastarnok]
-community_coordinators = [user_tamasvarga, user_nicolemontero]
+community_coordinators = [user_tamasvarga, user_sebastianwinter]
 
 class User:
     def __init__(self, app, userinfo):
