@@ -7,9 +7,11 @@ from user import bot_admins, community_coordinators, get_user
 # Regex pattern to match Slack user mentions: <@U12345678>
 MENTION_PATTERN = re.compile(r'<@(U[A-Z0-9]+)>')
 
+# U51CMBP54 - Christian Hahn
+
 # Additional users exempt from mention warnings (add user IDs here)
 ADDITIONAL_EXEMPT_USERS = [
-    # "U12345678",  # Example: Add extra user IDs who are allowed to @ mention freely
+    "U51CMBP54",  # Example: Add extra user IDs who are allowed to @ mention freely
 ]
 
 # Combined exempt list: admins + coordinators + any additional users
